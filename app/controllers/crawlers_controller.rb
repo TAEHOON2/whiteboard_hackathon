@@ -51,20 +51,26 @@ end
        @Crawls= Crawl.all
    
    end
-   
+  
     def searchtest2
     @search = Crawl.search(params[:q])
     @gwamoks = @search.result
     @search.build_condition if @search.conditions.empty?
     @search.build_sort if @search.sorts.empty?
-  end
+    end
   
   
     def intersection
     end
     
     def create #추가하기 하면 모델에 추가되는 액션
-    Usergwamok.create(user_id:current_user.id, gwamokid: params[:gwamokid])
+    Usergwamok.create(user_id:current_user.id, gwamokid: params[:gwamokid], 
+                     crawl_id: params[:crawl_id], boonban: params[:boonban],gyosoo: params[:gyosoo], gwamok: params[:gwamok])
+    redirect_to crawlers_searchtest2_path
     end
     
+    def individual
+        @mygwamoks=Usergwamok.where(user_id:current_user.id)
+        
+    end
 end

@@ -40,6 +40,10 @@ ul, ol, li {
 .text1 {
   font-size: 20px;
   font-weight: bold;
+}  
+.text2 {
+    font-size: 15px;
+    font-weight: bold;
 }
 
 /*네브바*/
@@ -251,7 +255,7 @@ nav {
     
 }
 
-.description p {
+.description > p{
     text-align: center;
     padding: 0px 50px 0px 50px;
     height: auto;
@@ -277,4 +281,60 @@ nav {
     line-height: 12px;
     text-align: center;
     margin-left: 300px;
+}
+
+
+/*login, signin 등 보드판*/
+.graybg {
+    background-color: #fafafa;
+}
+.user_whiteboard {
+    margin: auto;
+    margin-top: 60px;
+    width: 500px;
+    padding: 20px 60px 20px 60px;
+    background-color: white;
+    border: 4px solid black;
+    border-radius: 8px;
+}
+
+.user_whiteboard > .text1 {
+    float: right;
+    padding-top: 24px;
+}
+.user_whiteboard > .logo {
+    float: right;
+    margin-left: 10px;
+}
+
+.user_whiteboard > .text2 {
+    margin-top: 100px;
+}
+
+.boundary1 {
+ background-image: url("line3.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding: 30px 30px 50px 30px;   
+}
+
+
+ 
+/*form 관련*/
+.form-actions, .form-inputs {
+    display: inline-block;
+}
+
+.form-actions {
+    margin: 10px 5px 0px 5px;
+    background-color: #9b042c;
+    padding:5px 10px;
+}
+
+.form-actions > .text {
+    height: 24px;
+    line-height: 24px;
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
 }

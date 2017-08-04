@@ -11,20 +11,24 @@ class SigansController < ApplicationController
   # GET /sigans/1
   # GET /sigans/1.json
   def show
+    @currentgwamokid = params[:currentgwamokid]
   end
 
   # GET /sigans/new
   def new
     @sigan = Sigan.new
+    @currentgwamokid = params[:currentgwamokid]
   end
 
   # GET /sigans/1/edit
   def edit
+    @currentgwamokid = params[:currentgwamokid]
   end
 
   # POST /sigans
   # POST /sigans.json
   def create
+    @currentgwamokid = params[:currentgwamokid]
     @sigan = Sigan.new(sigan_params)
 
     respond_to do |format|
@@ -41,6 +45,7 @@ class SigansController < ApplicationController
   # PATCH/PUT /sigans/1
   # PATCH/PUT /sigans/1.json
   def update
+    @currentgwamokid = params[:currentgwamokid]
     respond_to do |format|
       if @sigan.update(sigan_params)
         format.html { redirect_to @sigan, notice: 'Sigan was successfully updated.' }

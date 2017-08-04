@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Sigans</h1>
+<h1><%= @currentgwamokid %>에서 팀플맞추기</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Gwamokid</th>
-      <th>Username</th>
-      <th>Title</th>
-      <th>Body</th>
+      <th>현재과목</th>
+      <th>작성자</th>
+      <th>제목</th>
+      <th>내용</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,9 +20,9 @@
         <td><%= sigan.username %></td>
         <td><%= sigan.title %></td>
         <td><%= sigan.body %></td>
-        <td><%= link_to 'Show', sigan %></td>
-        <td><%= link_to 'Edit', edit_sigan_path(sigan) %></td>
-        <td><%= link_to 'Destroy', sigan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '보기', sigan %></td>
+        <td><%= link_to '수정하기', edit_sigan_path(sigan) %></td>
+        <td><%= link_to '삭제하기', sigan, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Sigan', new_sigan_path %>
+<%= link_to '새 글 작성하기', new_sigan_path(:currentgwamokid=> @currentgwamokid) %>

@@ -13,22 +13,22 @@
 
   <div class="field">
     <%= f.label :현재과목 %><br>
-    <%= @currentgwamokid %>
+    <%= f.text_field :gwamokid, :value => @currentgwamokid, :readonly => true %>
   </div>
   <div class="field">
-    <%= f.label :username %><br>
+    <%= f.label :작성자 %><br>
     <%= f.text_field :username %>
   </div>
   <div class="field">
-    <%= f.label :title %><br>
+    <%= f.label :제목 %><br>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :body %><br>
+    <%= f.label :내용 %><br>
     <%= f.text_area :body %>
   </div>
   <div class="field">
-  <%= f.label :attachment %><br>
+  <%= f.label :첨부파일 %><br>
   <%= f.file_field :attachment %>
   </div>
   <div class="actions">

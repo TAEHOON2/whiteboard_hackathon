@@ -1,27 +1,27 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Gwamokid:</strong>
+  <strong>현재과목</strong>
   <%= @sigan.gwamokid %>
 </p>
 
 <p>
-  <strong>Username:</strong>
+  <strong>작성자</strong>
   <%= @sigan.username %>
 </p>
 
 <p>
-  <strong>Title:</strong>
+  <strong>제목</strong>
   <%= @sigan.title %>
 </p>
 
 <p>
-  <strong>Body:</strong>
+  <strong>내용</strong>
   <%= @sigan.body %>
 </p>
 
 <p>
-  <strong>Image:</strong>
+  <strong>첨부파일</strong>
   <% if @sigan.attachment.url %>
     <%= link_to '다운로드', @sigan.attachment.url %>
   <% else %>
@@ -29,26 +29,26 @@
   <% end %>
 </p>
 
-<h6>Replies</h6>
+<h6>댓글</h6>
 <% @sigan.siplies.each do |siply| %>
   <p>
-    <strong>User:</strong>
+    <strong>작성자</strong>
     <%= siply.reply_user %>
   </p>
   <p>
-    <strong>Reply:</strong>
+    <strong>댓글</strong>
     <%= siply.body %>
   </p>
 <% end %>
 
-<h6>Reply:</h6>
+<h6>댓글달기</h6>
 <%= form_for([@sigan, @sigan.siplies.build]) do |f| %>
   <p>
-    <%= f.label :reply_user %><br>
+    <%= f.label :작성자 %><br>
     <%= f.text_field :reply_user %>
   </p>
   <p>
-    <%= f.label :body %><br>
+    <%= f.label :내용 %><br>
     <%= f.text_area :body %>
   </p>
   <p>
@@ -56,5 +56,5 @@
   </p>
 <% end %>
 
-<%= link_to 'Edit', edit_sigan_path(@sigan) %> |
-<%= link_to 'Back', sigans_path %>
+<%= link_to '수정하기', edit_sigan_path(@sigan) %> |
+<%= link_to '돌아가기', sigans_path %>

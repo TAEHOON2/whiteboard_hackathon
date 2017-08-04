@@ -11,9 +11,7 @@ Rails.application.routes.draw do
 
   get 'timetable/create'
 
-  get 'crawlers/testing'  
-  #위 url을 절대 실행하지 마시오 ! -DB에 또 2880개 정보 들어가버림
-  
+ 
   get 'crawlers/viewfile'
   root 'timetable#index'
   
@@ -22,8 +20,12 @@ Rails.application.routes.draw do
   
   get 'crawlers/searchtest2'
   get 'crawlers/intersection'
-  get 'crawlers/individual'
+  post 'crawlers/create'
   #resources :crawls do
     #collection { post :search, to: 'crawlers/searchtest2' }
   #end
+  get 'crawlers/individual'
+   get 'crawlers/testing'  
+  #위 url을 절대 실행하지 마시오 ! -DB에 또 2880개 정보 들어가버림
+  
 end

@@ -70,7 +70,7 @@
     <th><%= sort_link @search, :isoo, "이수구분" %></th>
     <th><%= sort_link @search, :gwamok, "과목명" %></th>
     <th><%= sort_link @search, :gyosoo, "교수명" %></th>
-    <td><%= "추가하기"%></td>    
+       
   </tr>
 <% @gwamoks.each do |crawl| %>
   <tr>
@@ -80,6 +80,16 @@
     <td><%= crawl.isoo %></td>
     <td><%= crawl.gwamok %></td>
     <td><%= crawl.gyosoo %></td>
+
+     <%= form_tag crawlers_create_path do %>
+    <td><%=hidden_field_tag "crawl_id", crawl.id%></td>
+    <td><%=hidden_field_tag "gwamokid", crawl.gwamokid%></td>
+    <td><%=hidden_field_tag "boonban", crawl.boonban%></td>
+    <td><%=hidden_field_tag "gwamok", crawl.gwamok%></td>
+    <td><%=hidden_field_tag "gyosoo", crawl.gyosoo%></td>
+
+    <td><%= button_to "추가하기", crawlers_create_path, method:"post" %></td>
+   <% end%>
  
   </tr>
 <% end %>
