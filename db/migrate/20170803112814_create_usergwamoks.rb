@@ -2,6 +2,7 @@ class CreateUsergwamoks < ActiveRecord::Migration
   def change
     create_table :usergwamoks do |t|
       t.belongs_to :user
+      t.belongs_to :crawl
       t.string :gwamokid
       t.string :campus
       t.string :haksu

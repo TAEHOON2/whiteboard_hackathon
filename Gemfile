@@ -27,7 +27,10 @@ gem 'nokogiri'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
-gem 'paperclip', '~> 5.0.0'
+gem 'carrierwave'
+gem 'fog-aws'
+gem 'figaro'
+gem 'paperclip'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

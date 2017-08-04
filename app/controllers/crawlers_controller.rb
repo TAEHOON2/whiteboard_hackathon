@@ -59,8 +59,12 @@ end
     @search.build_sort if @search.sorts.empty?
   end
   
+  
     def intersection
     end
     
-    def 
+    def create #추가하기 하면 모델에 추가되는 액션
+    Usergwamok.create(user_id:current_user.id, gwamokid: params[:gwamokid])
+    end
+    
 end

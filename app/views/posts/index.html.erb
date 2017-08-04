@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Posts</h1>
+<h1><%= @currentgwamokid %>의 게시판 </h1>
 
 <table>
   <thead>
@@ -14,7 +14,8 @@
   </thead>
 
   <tbody>
-    <% @posts.each do |post| %>
+    <% @posts.each do |post|
+     if post.gwamokid == @currentgwamokid %>
       <tr>
         <td><%= post.gwamokid %></td>
         <td><%= post.username %></td>
@@ -24,10 +25,11 @@
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <% end%> 
     <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Post', new_post_path %>
+<%= link_to 'New Post', new_post_path(:currentgwamokid=> @currentgwamokid)  %>

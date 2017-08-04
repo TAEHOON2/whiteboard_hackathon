@@ -1,6 +1,13 @@
 <div>
-    [cose14100] <!--변수로 보일 것-->
+    넘어온 값 : <%= @gwamokid %> ex) [cose14100] <!--변수로 보일 것-->
 </div>
+<%= @currentgwamokid = "CURRY101"%>
 <%= link_to("익챗","#")%>
-<%= link_to("팀플대니","#")%>
-<%= link_to("게시판", posts_url)%>
+<%= link_to("팀플대니",:action=>"index", :controller=>"sigans", :currentgwamokid=> @currentgwamokid)%>
+<%= link_to("게시판", :action=>"index", :controller=>"posts", :currentgwamokid=> @currentgwamokid)%>
+<!--:action=>"index", :controller=>"posts", 
+<!--#Post.index(:currentgwamokid => @currentgwamokid)
+<!--<form method="POST" action="/posts">-->
+<!--  <input type="hidden" name="gwamokid" value="@gwamokid">-->
+<!--  <p>게시판<input type="submit"></p>-->
+<!--</form>-->

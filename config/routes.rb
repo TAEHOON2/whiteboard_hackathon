@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   
   get 'crawlers/searchtest2'
   get 'crawlers/intersection'
+  get 'crawlers/individual'
   #resources :crawls do
     #collection { post :search, to: 'crawlers/searchtest2' }
   #end

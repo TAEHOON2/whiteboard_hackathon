@@ -1,16 +1,20 @@
-<h2>Sign up</h2>
+<p class="text1">회원가입</p>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
+ 
+            <p class="text2">막걸리샛끼 인증받기</p>
+           
+
   <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+    <%= f.input :email, :label => 'First Name', required: true, autofocus: true, placeholder: "이메일@korea.ac.kr" %>
     <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
     <%= f.input :password_confirmation, required: true %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "확인" %>
   </div>
 <% end %>
 

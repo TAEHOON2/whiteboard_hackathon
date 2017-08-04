@@ -10,10 +10,10 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= f.label :gwamokid %><br>
-    <%= f.text_field :gwamokid %>
+    <%= f.label :현재과목 %><br>
+    <%= @currentgwamokid %>
+    <% @post.gwamokid = @currentgwamokid%>
   </div>
   <div class="field">
     <%= f.label :username %><br>
@@ -26,6 +26,10 @@
   <div class="field">
     <%= f.label :body %><br>
     <%= f.text_area :body %>
+  </div>
+  <div class="field">
+    <%= f.label :attachment %><br>
+    <%= f.file_field :attachment %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -1,9 +1,48 @@
-<h1>Timetable#index</h1>
-    <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.email %></strong>.
-      <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-      <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-      <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-    <% end %>
+<div class="maincontainer">
+  <div class="sidebar">
+    <a href="/" class="logo"><%= image_tag("logo.png") %></a>
+  
+    <div class="login">
+      <%= link_to "로그인", new_user_session_path, :class => 'navbar-link'  %>
+    </div>
+    <div class="confirmation">
+      <%= link_to "가입할래", new_user_registration_path, :class => 'navbar-link'  %>
+    </div>
+    <div class="find">
+      <%= link_to "까먹었다", new_user_registration_path, :class => 'navbar-link'  %>
+    </div>  
+  </div>    
+</div>
+
+
+<div class="crimson">
+  <div class="board">
+    <div class="screen">
+    </div>
+  </div>
+  <h2>고대생을 위한 진짜 e-learning 시스템<br><strong>화이트보드</strong></h2>
+</div>
+        
+        
+<div class="description">
+  <p>우리학교 강의시간에 딱 맞는 <strong>시간표 작성</strong>이 가능하고<br>수업자료, 필기, 족보 등 <strong>유용한 정보</strong>를 접할 수 있으며,<br>수강생들과 소통하는 <strong>익명 채팅방</strong>를 이용할 수 있습니다.</p>
+</div>    
+      
+
+
+<div class="footer">
+  <p>White Board 2017. The Genuine E-learning System.</p>
+</div>
+      
+
+
+
+
+    <!--<% if user_signed_in? %>-->
+    <!--  Logged in as <strong><%= current_user.email %></strong>.-->
+    <!--  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |-->
+    <!--  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>-->
+    <!--<% else %>-->
+    <!--  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |-->
+    <!--  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>-->
+    <!--<% end %>-->

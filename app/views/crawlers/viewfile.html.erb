@@ -42,7 +42,7 @@
 </table>
 <table>
     <% @Crawls.each do |c|%>
-    <tr class="classid" id="<%= c.haksu%><%=c.boonban%>">
+    <tr class="classid" id="<%= c.gwamokid %>">
         <td><%= c.campus %></td>
         <td><%= c.boonban %></td>
         <td><%= c.isoo %></td>
@@ -52,8 +52,10 @@
         <td class="timeplace2"><%= c.timeplace2%></td>
         <td class="timeplace3"><%= c.timeplace3%></td>
         <td class="timeplace4"><%= c.timeplace4%></td>
-
-        <td><button class="addClassToTable" onclick="addClassToTable(btn)" id="btn<%= c.haksu%><%=c.boonban%>">추가하기</button></td>
+        <!--<input name="gwamokid", type="hidden", value= c.gwamokid> 는 html이라서 안될거같고..-->
+        <%=# hidden_field_tag(:crawl, "c.crawl_id") %>
+        <%=# hidden_field_tag(:crawl, "c.gwamokid") %> <!--이렇게 두개 던지면 될듯-->
+        <td><button class="addClassToTable" onclick="addClassToTable(btn)" id="btn<%= c.gwamokid %>">추가하기</button></td>
     </tr>
     <script>
       var btn_arr = [];

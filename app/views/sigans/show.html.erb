@@ -20,6 +20,15 @@
   <%= @sigan.body %>
 </p>
 
+<p>
+  <strong>Image:</strong>
+  <% if @sigan.attachment.url %>
+    <%= link_to '다운로드', @sigan.attachment.url %>
+  <% else %>
+    <span>첨부파일 없음</span>
+  <% end %>
+</p>
+
 <h6>Replies</h6>
 <% @sigan.siplies.each do |siply| %>
   <p>

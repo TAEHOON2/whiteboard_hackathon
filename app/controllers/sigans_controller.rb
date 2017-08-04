@@ -5,6 +5,7 @@ class SigansController < ApplicationController
   # GET /sigans.json
   def index
     @sigans = Sigan.all
+    @currentgwamokid = params[:currentgwamokid]
   end
 
   # GET /sigans/1
@@ -69,7 +70,7 @@ class SigansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sigan_params
-      params.require(:sigan).permit(:gwamokid, :username, :title, :body)
+      params.require(:sigan).permit(:gwamokid, :username, :title, :body, :attachment)
     end
 
 end

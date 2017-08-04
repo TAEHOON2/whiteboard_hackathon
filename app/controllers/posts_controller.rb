@@ -5,25 +5,30 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+    @currentgwamokid = params[:currentgwamokid]
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @currentgwamokid = params[:currentgwamokid]
   end
 
   # GET /posts/new
   def new
     @post = Post.new
+    @currentgwamokid = params[:currentgwamokid]
   end
 
   # GET /posts/1/edit
   def edit
+    @currentgwamokid = params[:currentgwamokid]
   end
 
   # POST /posts
   # POST /posts.json
   def create
+    @currentgwamokid = params[:currentgwamokid]
     @post = Post.new(post_params)
 
     respond_to do |format|
@@ -69,6 +74,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:gwamokid, :username, :title, :body)
+      params.require(:post).permit(:gwamokid, :username, :title, :body, :attachment)
     end
 end

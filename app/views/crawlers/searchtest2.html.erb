@@ -1,4 +1,4 @@
-  <nav>
+<nav>
     <div class="wrap">
      
       <div class="title">
@@ -30,33 +30,35 @@
 			</ul>
 			
     </div>
-  </nav>
+</nav>
   
 
+<div class="search">
+  <p class="text1">강의 찾기</p>
+  
+</div>
 
-
-
-
-
-
-
-
-
-
-
-<h1>gwamoks</h1>
 
 <%= search_form_for @search, url: crawlers_searchtest2_path, method: :get do |f| %>
+ 
+
   <%= f.condition_fields do |c| %>
     <%= render "condition_fields", f: c %>
   <% end %>
+  
+  
   <p><%= link_to_add_fields "Add Conditions", f, :condition %></p>
-  <div class="field">
-    Sort:
+  
+  
+  <div class="field">Sort:
     <%= f.sort_fields do |s| %>
       <%= s.sort_select %>
     <% end %>
-  </div>
+  
+ 
+ 
+ 
+ 
   <div class="actions"><%= f.submit "Search" %></div>
 <% end %>
 
@@ -78,8 +80,17 @@
     <td><%= crawl.isoo %></td>
     <td><%= crawl.gwamok %></td>
     <td><%= crawl.gyosoo %></td>
-    <td><%= link_to("추가하기", "#") %></td> 
-    <input type="hidden", name="gwamokid", value="@gwakmokid"
+ 
   </tr>
 <% end %>
 </table>
+
+        <%= form_tag crawlers_intersection_path do %>
+          <div class="input-field">
+            <%= text_area_tag :gwamokid, nil, class: "materialize-textarea", placeholder: "무슨 생각을 하고 있나요?" %>
+          </div>
+
+          <div class="input-field">
+            <%= button_tag "작성하기", class: "btn" %>
+          </div>
+        <% end %>

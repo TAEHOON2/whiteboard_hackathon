@@ -1,7 +1,7 @@
 <div class="field">
   <%= f.attribute_fields do |a| %>
     <%= a.attribute_select associations: [:category] %>
-  <% end %>
+<% end %>
   <%= f.predicate_select %>
   <%= f.value_fields do |v| %>
     <%= v.text_field :value %>

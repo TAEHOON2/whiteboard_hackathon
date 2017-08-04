@@ -2,8 +2,11 @@
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 
+/*공통스타일*/
+
 * {
   box-sizing: border-box;
+  font-family: 'Jeju Gothic', sans-serif !important;
 }
 
 div {
@@ -13,13 +16,11 @@ div {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Jeju Gothic', sans-serif;
-  background-color: #fafafa;
 }
 
 a:visited, a:link, a:hover {
   text-decoration: none !important;
-  color: black;
+  color: black !important;
 }
 
 ul, ol, li {
@@ -27,8 +28,21 @@ ul, ol, li {
   display: list-item;
 }
 
-/*공통스타일*/
+/*로고 이미지 */
+.logo > img {
+  margin: 11px 0;
+  width: 50px;
+  height: 58px;
+} 
 
+/* 폰트 종류 */
+ 
+.text1 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/*네브바*/
 
 
 nav {
@@ -55,12 +69,6 @@ nav {
 .title .logo {
   text-align: center;
 }
-
-.logo > img {
-  margin: 11px 0;
-  width: 50px;
-  height: 58px;
-} 
 
 .account {
   padding-top: 10px;
@@ -124,3 +132,149 @@ nav {
     border-bottom: 80px solid #ffe95c;
 }
 
+
+
+/*강의검색페이지*/
+
+
+.search {
+    margin: 130px 5% 0 5%;
+    border: 3px solid black;
+    border-radius: 8px;
+    background-color: White;
+    padding: 20px 20px;
+}
+
+
+/*홈페이지 index*/
+
+
+.maincontainer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    overflow-y: auto;
+    background-color: white;
+    border-right: 2px solid #9b9b9b;
+}
+
+.maincontainer .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 40px 15px;
+    width: 300px;
+}
+
+.sidebar .logo {
+    display: block;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.login {
+    margin-top: 30px;
+    background-image: url("line2.png"); 
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.confirmation, .find {
+    margin-top: 30px;
+    background-image: url("line1.png"); 
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.crimson {
+    width: 100%;
+    padding-left: 300px;
+    padding-top: 30px;
+    height: 450px;
+    background-color: #9b042c;
+}
+
+.board {
+    margin: 0px auto;
+    width: 500px;
+    height: 300px;
+    background-image: url(/img/1.jpg);
+    background-size: cover;
+    border: 4px solid black;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    animation-name: example;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes example {
+    0%   {background-image: url(/img/1.jpg);}
+    33%  {background-image: url(/img/2.jpg);}
+    100%  {background-image: url(/img/3.jpg);}
+}
+
+.crimson h2 {
+    font-size: 24px;
+    color: white;
+    line-height: 24px;
+    text-align: center;
+    padding-bottom: 70px;
+}
+
+.crimson h2 > strong {
+    font-size: 30px;
+    line-height: 40px;
+}
+
+.description {
+    width: 100%;
+    background-color: white;
+    padding-left: 300px;
+    bottom: 0;
+    
+}
+
+.description p {
+    text-align: center;
+    padding: 0px 50px 0px 50px;
+    height: auto;
+    font-size: 14px;
+    line-height: 16px;
+    color: #4c4c4c;
+}
+
+
+/*footer*/
+
+
+.footer {
+    bottom: 0;
+    width: 100%;
+    height: 14px;
+    background-color:white;
+    border-top: 4px solid #8a8a8a;
+}
+
+.footer > p {
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+    margin-left: 300px;
+}

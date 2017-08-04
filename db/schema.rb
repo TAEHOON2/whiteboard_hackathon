@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803115541) do
+ActiveRecord::Schema.define(version: 20170804124918) do
 
   create_table "crawls", force: :cascade do |t|
     t.string   "gwamokid"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20170803115541) do
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "attachment"
   end
 
   create_table "replies", force: :cascade do |t|
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(version: 20170803115541) do
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "attachment"
   end
 
   create_table "siplies", force: :cascade do |t|
@@ -69,6 +71,8 @@ ActiveRecord::Schema.define(version: 20170803115541) do
   add_index "siplies", ["sigan_id"], name: "index_siplies_on_sigan_id"
 
   create_table "usergwamoks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "crawl_id"
     t.string   "gwamokid"
     t.string   "campus"
     t.string   "haksu"
@@ -81,7 +85,6 @@ ActiveRecord::Schema.define(version: 20170803115541) do
     t.string   "timeplace2"
     t.string   "timeplace3"
     t.string   "timeplace4"
-    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
