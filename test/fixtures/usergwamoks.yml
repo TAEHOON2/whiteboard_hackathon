@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gwamokid: MyString
+  campus: MyString
+  haksu: MyString
+  boonban: MyString
+  isoo: MyString
+  gwamok: MyString
+  gyosoo: MyString
+  hakjum: MyString
+  timeplace1: MyString
+  timeplace2: MyString
+  timeplace3: MyString
+  timeplace4: MyString
+
+two:
+  gwamokid: MyString
+  campus: MyString
+  haksu: MyString
+  boonban: MyString
+  isoo: MyString
+  gwamok: MyString
+  gyosoo: MyString
+  hakjum: MyString
+  timeplace1: MyString
+  timeplace2: MyString
+  timeplace3: MyString
+  timeplace4: MyString

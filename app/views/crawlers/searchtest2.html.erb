@@ -1,0 +1,85 @@
+  <nav>
+    <div class="wrap">
+     
+      <div class="title">
+        <a href="/" class="logo">
+          <%= image_tag("logo.png") %>
+        </a>
+      </div>
+        
+      <ul class="account">
+        <li>
+          <a href="#">
+			   	  <span class="userid">유저아이디</span>
+			   	  <span class="usernickname">(유저닉네임)</span>
+			   	</a>
+        </li>
+        <li>
+          <img src="https://psnprofiles.com/lib/img/icons/40-gld.png" alt="레벨"/>
+        </li>
+        <li class="logout">
+			    <a href="#">로그아웃</a>
+			  </li>
+      </ul>
+        
+      <ul class="menu">
+			  <li class="active"><a href="/timetable">시간표</a></li>
+			  <li><a href="#">자료게시판</a></li>
+			  <li><a href="#">채팅방</a></li>
+			  <li><a href="#">팀플관리</a></li>
+			</ul>
+			
+    </div>
+  </nav>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>gwamoks</h1>
+
+<%= search_form_for @search, url: crawlers_searchtest2_path, method: :get do |f| %>
+  <%= f.condition_fields do |c| %>
+    <%= render "condition_fields", f: c %>
+  <% end %>
+  <p><%= link_to_add_fields "Add Conditions", f, :condition %></p>
+  <div class="field">
+    Sort:
+    <%= f.sort_fields do |s| %>
+      <%= s.sort_select %>
+    <% end %>
+  </div>
+  <div class="actions"><%= f.submit "Search" %></div>
+<% end %>
+
+<table id="crawls">
+  <tr>
+    <th><%= sort_link @search, :campus, "캠퍼스" %></th>
+    <th><%= sort_link @search, :haksu, "학수번호" %></th>
+    <th><%= sort_link @search, :boonban, "분반" %></th>
+    <th><%= sort_link @search, :isoo, "이수구분" %></th>
+    <th><%= sort_link @search, :gwamok, "과목명" %></th>
+    <th><%= sort_link @search, :gyosoo, "교수명" %></th>
+    <td><%= "추가하기"%></td>    
+  </tr>
+<% @gwamoks.each do |crawl| %>
+  <tr>
+    <td><%= link_to(crawl.campus, "#") %></td>
+    <td><%= crawl.haksu %></td>
+    <td><%= crawl.boonban %></td>
+    <td><%= crawl.isoo %></td>
+    <td><%= crawl.gwamok %></td>
+    <td><%= crawl.gyosoo %></td>
+    <td><%= link_to("추가하기", "#") %></td> 
+    <input type="hidden", name="gwamokid", value="@gwakmokid"
+  </tr>
+<% end %>
+</table>

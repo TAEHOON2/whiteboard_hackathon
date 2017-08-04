@@ -1,0 +1,1 @@
+json.partial! "sigans/sigan", sigan: @sigan

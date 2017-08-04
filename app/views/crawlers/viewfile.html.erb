@@ -1,0 +1,74 @@
+<table>
+    <tr>
+        <td id=""></td>
+        <td id="">월</td>
+        <td id="">화</td>
+        <td id="">수</td>
+        <td id="">목</td>
+        <td id="">금</td>
+    </tr>
+    <tr>
+        <td id="">1교시</td>
+        <td id=""></td>
+        <td id=""></td>
+        <td id=""></td>
+        <td id="thur1"></td>
+        <td id=""></td>
+    </tr>
+    <tr>
+        <td id="">2교시</td>
+        <td id=""></td>
+        <td id=""></td>
+        <td id=""></td>
+        <td id="thur2"></td>
+        <td id=""></td>
+    </tr>
+    <tr>
+        <td id="">3교시</td>
+        <td id=""></td>
+        <td id=""></td>
+        <td id=""></td>
+        <td id=""></td>
+        <td id=""></td>
+    </tr>
+    <tr>
+        <td id="">4교시</td>
+        <td id=""></td>
+        <td id=""></td>
+        <td id=""></td>
+        <td id=""></td>
+        <td id=""></td>
+    </tr>
+</table>
+<table>
+    <% @Crawls.each do |c|%>
+    <tr class="classid" id="<%= c.haksu%><%=c.boonban%>">
+        <td><%= c.campus %></td>
+        <td><%= c.boonban %></td>
+        <td><%= c.isoo %></td>
+        <td><%= c.gwamok%></td>
+        <td><%= c.gyosoo %></td>
+        <td class="timeplace1"><%= c.timeplace1%></td>
+        <td class="timeplace2"><%= c.timeplace2%></td>
+        <td class="timeplace3"><%= c.timeplace3%></td>
+        <td class="timeplace4"><%= c.timeplace4%></td>
+
+        <td><button class="addClassToTable" onclick="addClassToTable(btn)" id="btn<%= c.haksu%><%=c.boonban%>">추가하기</button></td>
+    </tr>
+    <script>
+      var btn_arr = [];
+      var i =1;
+        $( document ).ready( function() {
+            var buttonid = $(".classid").attr('id');
+            btn_arr.push(buttonid);
+            console.log(btn_arr);
+            i++;
+            $("."+id).hover(function(){
+                $(this).css("color", "red");
+            });
+        } );
+    </script>
+
+
+    <% end %>
+</table>

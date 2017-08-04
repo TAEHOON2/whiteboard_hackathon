@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Gwamokid:</strong>
+  <%= @sigan.gwamokid %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @sigan.username %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @sigan.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @sigan.body %>
+</p>
+
+<h6>Replies</h6>
+<% @sigan.siplies.each do |siply| %>
+  <p>
+    <strong>User:</strong>
+    <%= siply.reply_user %>
+  </p>
+  <p>
+    <strong>Reply:</strong>
+    <%= siply.body %>
+  </p>
+<% end %>
+
+<h6>Reply:</h6>
+<%= form_for([@sigan, @sigan.siplies.build]) do |f| %>
+  <p>
+    <%= f.label :reply_user %><br>
+    <%= f.text_field :reply_user %>
+  </p>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_sigan_path(@sigan) %> |
+<%= link_to 'Back', sigans_path %>

@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Sigans</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Gwamokid</th>
+      <th>Username</th>
+      <th>Title</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sigans.each do |sigan| %>
+      <tr>
+        <td><%= sigan.gwamokid %></td>
+        <td><%= sigan.username %></td>
+        <td><%= sigan.title %></td>
+        <td><%= sigan.body %></td>
+        <td><%= link_to 'Show', sigan %></td>
+        <td><%= link_to 'Edit', edit_sigan_path(sigan) %></td>
+        <td><%= link_to 'Destroy', sigan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sigan', new_sigan_path %>

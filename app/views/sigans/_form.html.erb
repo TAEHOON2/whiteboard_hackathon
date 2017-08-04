@@ -1,0 +1,33 @@
+<%= form_for(@sigan) do |f| %>
+  <% if @sigan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sigan.errors.count, "error") %> prohibited this sigan from being saved:</h2>
+
+      <ul>
+      <% @sigan.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :gwamokid %><br>
+    <%= f.text_field :gwamokid %>
+  </div>
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
