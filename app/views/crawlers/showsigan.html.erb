@@ -1,0 +1,154 @@
+<% a = "목(1-2) 우정간호학관 101호" %>
+<% b = "수(4-6) 현차관 101호" %>
+<% d = "월(2) LG-POSCO관 304호" %>
+<% z = "금(3-5) LG-POSCO관 304호"%>
+<% y = "화(7-9) LG-POSCO관 304호"%>
+<% c = [] %>
+<br>
+<% c << a << b << d << z << y %>
+
+<br>
+<!--날짜 뽑아내기 -->
+<% yoilgyosi = [] %>
+
+<% c.each do|x| %>
+<% imsiyoil = "" %>
+<% imsiyoil = x.split('(')[0] %>
+    <% case %>
+        <% when imsiyoil == "월" %>
+        <% imsiyoil = 0 %>
+        <% when imsiyoil == "화" %>
+        <% imsiyoil = 1 %>
+        <% when imsiyoil == "수" %>
+        <% imsiyoil = 2 %>
+        <% when imsiyoil == "목" %>
+        <% imsiyoil = 3 %>
+        <% when imsiyoil == "금" %>
+        <% imsiyoil = 4 %>
+    <% end %>
+    <% if x.split("-")[1].include? ")" %>
+        <% imsigyosi = "" %>
+        <% if x.split("-")[1].split(')')[0].to_i - x.split("-")[0].split('(')[1].to_i == 2 %>
+        <% yoilgyosi << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 1] %>
+        <% yoilgyosi << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 2] %>
+        <% yoilgyosi << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 3] %>
+        <% else %>
+        <% yoilgyosi << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 1] %>
+        <% yoilgyosi << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 2] %>
+        <% end %>
+    <% else %>
+        <% imsigyosi = x.split(')')[0].split('(')[1] %>
+        <% yoilgyosi << [imsiyoil.to_i,imsigyosi.to_i - 1] %>
+    <% end %>
+<% end %>
+<%= yoilgyosi %>
+<!-- [요일, 교시], 교시: 0(1교시) 1(2교시) 2(3교시)... 9(10교시) / 요일: 0(월요일) 1(화요일)...4(금요일) --
+<!-- 대니를 위해 행렬 생성해봄 -->
+<% dannymatrix = [] %>
+<% dannymatrix = [[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0]]%>
+<% yoilgyosi.each do |x| %>
+<!--x[0]는 요일 -->
+<!--x[1]는 교시 -->
+<% dannymatrix[x[0]][x[1]] = 1 %>
+<% end %>
+<%= dannymatrix %>
+<!-- 대니 매트릭스는 여기까지 -->
+<!-- 이제 두 번째 사람 등장 -->
+<% e = "금(1-2) 우정간호학관 101호" %>
+<% f = "수(4-6) 현차관 101호" %>
+<% g = "화(2) LG-POSCO관 304호" %>
+<% w = "월(6-8) LG-POSCO관 304호"%>
+<% q = "목(2-4) LG-POSCO관 304호"%>
+<% h = [] %>
+<br>
+<% h << e << f << g << w << q %>
+<br>
+
+
+<!--날짜 뽑아내기 -->
+<% yoilgyosi2 = [] %>
+
+<% h.each do|x| %>
+<% imsiyoil = "" %>
+<% imsiyoil = x.split('(')[0] %>
+    <% case %>
+        <% when imsiyoil == "월" %>
+        <% imsiyoil = 0 %>
+        <% when imsiyoil == "화" %>
+        <% imsiyoil = 1 %>
+        <% when imsiyoil == "수" %>
+        <% imsiyoil = 2 %>
+        <% when imsiyoil == "목" %>
+        <% imsiyoil = 3 %>
+        <% when imsiyoil == "금" %>
+        <% imsiyoil = 4 %>
+    <% end %>
+    <% if x.split("-")[1].include? ")" %>
+        <% imsigyosi = "" %>
+        <% if x.split("-")[1].split(')')[0].to_i - x.split("-")[0].split('(')[1].to_i == 2 %>
+        <% yoilgyosi2 << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 1] %>
+        <% yoilgyosi2 << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 2] %>
+        <% yoilgyosi2 << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 3] %>
+        <% else %>
+        <% yoilgyosi2 << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 1] %>
+        <% yoilgyosi2 << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 2] %>
+        <% end %>
+    <% else %>
+        <% imsigyosi = x.split(')')[0].split('(')[1] %>
+        <% yoilgyosi2 << [imsiyoil.to_i,imsigyosi.to_i - 1] %>
+    <% end %>
+<% end %>
+<%= yoilgyosi2 %>
+<% dannymatrix2 = [] %>
+<% dannymatrix2 = [[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0]]%>
+<% yoilgyosi2.each do |x| %>
+<!--x[0]는 요일 -->
+<!--x[1]는 교시 -->
+<% dannymatrix2[x[0]][x[1]] = 1 %>
+<% end %>
+<%= dannymatrix2 %>
+<%= integratedanny = []%>
+<%= integratedanny << dannymatrix %>
+<%= integratedanny << dannymatrix2 %>
+
+<!-- 필요하면 dannymatrix 3, 4, 5 계속 던지면 아래 함수는 돌아감. integratedanny가 계산함수, sumdannymatrix가 통합함수 -->
+<br>
+<% n = 0 %>
+<% sumdannymatrix = [[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0]] %>
+<% integratedanny.each do |x| %>
+<% for i in (0..4)%>
+<% for j in (0..9)%>
+<% sumdannymatrix[i][j] = x[i][j] + sumdannymatrix[i][j] %>
+<% end %>
+<% end %>
+<% n = n + 1 %>
+<% end %>
+<br>
+<%= sumdannymatrix %>
+
+<!--sumdannymatrix 해석 함수 -->
+<br>
+<%= "#{n}명이 만날 수 있는 시간은?" %>
+<br>
+<% for i in 0..4 do %>
+<% for j in 0..9 do %>
+<% if sumdannymatrix[i][j] == 0 %>
+<% o = ""%>
+   <% case %>
+        <% when i == 0 %>
+        <% o = "월" %>
+        <% when i == 1 %>
+        <% o = "화" %>
+        <% when i == 2 %>
+        <% o = "수" %>
+        <% when i == 3 %>
+        <% o = "목" %>
+        <% when i == 4 %>
+        <% o = "금" %>
+    <% end %>
+    <%= "#{o}요일의 #{j + 1}교시"%>
+    <br>
+<% end %>
+<% end %>
+<% end %>
+<p>에 가능합니다.</p>

@@ -1,0 +1,57 @@
+<%= form_for(@sigandanny) do |f| %>
+  <% if @sigandanny.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sigandanny.errors.count, "error") %> prohibited this sigandanny from being saved:</h2>
+
+      <ul>
+      <% @sigandanny.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :팀장 %><br>
+    <%= f.text_field :userid1, :value => current_user.email, :readonly => true %>
+  </div>
+  <div class="field">
+    <%= f.label :부원 %><br>
+    <%= f.text_field :userid2 %>
+  </div>
+  <div class="field">
+    <%= f.label :부원 %><br>
+    <%= f.text_field :userid3 %>
+  </div>
+  <div class="field">
+    <%= f.label :userid4 %><br>
+    <%= f.text_field :userid4 %>
+  </div>
+  <div class="field">
+    <%= f.label :부원 %><br>
+    <%= f.text_field :userid5 %>
+  </div>
+  <div class="field">
+    <%= f.label :부원 %><br>
+    <%= f.text_field :userid6 %>
+  </div>
+  <div class="field">
+    <%= f.label :부원 %><br>
+    <%= f.text_field :userid7 %>
+  </div>
+  <div class="field">
+    <%= f.label :부원 %><br>
+    <%= f.text_field :userid8 %>
+  </div>
+  <div class="field">
+    <%= f.label :부원 %><br>
+    <%= f.text_field :userid9 %>
+  </div>
+  <div class="field">
+    <%= f.label :부원 %><br>
+    <%= f.text_field :userid10 %>
+  </div>
+  <div class="actions">
+    <%= f.submit "우리의 약속가능 시간은?"%>
+  </div>
+<% end %>

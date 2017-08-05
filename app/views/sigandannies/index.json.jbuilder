@@ -1,0 +1,1 @@
+json.array! @sigandannies, partial: 'sigandannies/sigandanny', as: :sigandanny

@@ -1,0 +1,2 @@
+json.extract! sigandanny, :id, :userid1, :userid2, :userid3, :userid4, :userid5, :userid6, :userid7, :userid8, :userid9, :userid10, :created_at, :updated_at
+json.url sigandanny_url(sigandanny, format: :json)

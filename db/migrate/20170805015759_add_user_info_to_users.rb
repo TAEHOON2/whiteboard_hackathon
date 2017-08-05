@@ -6,3 +6,4 @@ class AddUserInfoToUsers < ActiveRecord::Migration
     add_column :users, :nickname, :string
   end
 end
+

@@ -4,6 +4,7 @@ class CreateUsergwamoks < ActiveRecord::Migration
       t.belongs_to :user
       t.belongs_to :crawl
       t.string :gwamokid
+      t.string :rhoonjang
       t.string :campus
       t.string :haksu
       t.string :boonban
@@ -15,6 +16,7 @@ class CreateUsergwamoks < ActiveRecord::Migration
       t.string :timeplace2
       t.string :timeplace3
       t.string :timeplace4
+      
       
       
       t.timestamps null: false

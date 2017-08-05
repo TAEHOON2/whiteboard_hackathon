@@ -1,0 +1,37 @@
+<h1>Search result 1</h1>
+
+<table id="crawls">
+ 
+
+<% @gwamokfind.each do |m| %>
+  <tr>
+    <td><%= link_to(m.campus, "#") %></td>
+    <td><%= m.haksu %></td>
+    <td><%= m.boonban %></td>
+    <td><%= m.isoo %></td>
+    <td><%= m.gwamok %></td>
+    <td><%= m.gyosoo %></td>
+    <td><%= m.timeplace1 %></td>
+    <td><%= m.timeplace2 %></td>
+    <td><%= m.timeplace3 %></td>
+    <td><%= m.timeplace4 %></td>
+
+     <%= form_tag crawlers_create_path do %>
+    <td><%=hidden_field_tag "crawl_id", m.id%></td>
+    <td><%=hidden_field_tag "gwamokid", m.gwamokid%></td>
+    <td><%=hidden_field_tag "boonban", m.boonban%></td>
+    <td><%=hidden_field_tag "gwamok", m.gwamok%></td>
+    <td><%=hidden_field_tag "gyosoo", m.gyosoo%></td>
+    <td><%=hidden_field_tag "timeplace1", m.timeplace1%></td>
+    <td><%=hidden_field_tag "timeplace2", m.timeplace2%></td>
+    <td><%=hidden_field_tag "timeplace3", m.timeplace3%></td>
+    <td><%=hidden_field_tag "timeplace4", m.timeplace4%></td>
+
+    <td><%= button_to "추가하기", crawlers_create_path, method:"post" %></td>
+   <% end%>
+ 
+  </tr>
+<% end %>
+</table>
+
+

@@ -19,7 +19,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'whiteboard-leopoldshim.c9users.io' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    user_name:      'whiteboardku@gmail.com', # 화이트보드 계정
+    user_name:      'whiteboardku2@gmail.com', # 화이트보드 계정
     password:       'ghkdlxmqhem', # 화이트보드
     domain:         'gmail.com',
     address:        'smtp.gmail.com',

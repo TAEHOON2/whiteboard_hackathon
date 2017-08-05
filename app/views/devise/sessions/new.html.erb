@@ -1,61 +1,24 @@
-<h2>로그인</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email, required: false, autofocus: true %>
-    <%= f.input :password, required: false %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
-
-
-
-
-
-
-
-
-<div class="graybg">
-  <div class="user_whiteboard">
+<div class="user_whiteboard">
+    <div class="subtitle">
     <a href="/" class="logo"><%= image_tag("logo.png") %></a>  
-    <p class="text1">로그인</p>
-    <div class="boundary1">
+    <p id="maintitle">WHITE BOARD</p>
+    </div>
+    <div class="boundary2">
       <div class="form">
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         
-          <%= f.error_notification %>
           <div class="form-inputs">
-            <%= f.input :email, :label => false, required: false, autofocus: true, placeholder: "이메일@korea.ac.kr" %>  
+           <%= f.input :email, autofocus: true, :label => false, placeholder: "이메일@korea.ac.kr" %>
+           <%= f.input :password, :label => false, placeholder: "비밀번호" %>
+           <%= f.input :remember_me, :label => '기억해주세요', as: :boolean if devise_mapping.rememberable? %>
           </div>
-          <div class="form-inputs">
-            <%= f.input :password, :label => false, required: false, placeholder: "비밀번호 (6자 이상)" %>
-            <%= f.input :password_confirmation, :label => false, required: false, placeholder: "비밀번호 확인" %>
-          </div>
-          <div class="form-group">
-            <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: "이름" %>
-          </div>
-          
-        
-        
-        
-          <p class="info">* 학교 이메일로 인증번호를 안내해드립니다.</p>
           <div class="form-actions" id="submit">
-            <%= f.button :submit, "확인" %>
+            <%= f.button :submit, "로그인" %>
           </div>
-        </div>
       <% end %>
       </div>
-    
-
-    
-    <%= render "devise/shared/links" %>
-      </div>
     </div>
-  </div>
-
+   <div class="links">
+    <%= render "devise/shared/links" %>
+   </div>
+      </div>

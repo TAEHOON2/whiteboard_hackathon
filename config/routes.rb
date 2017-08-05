@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :sigandannies
+  resources :dannies
+  get 'dannies/new'
+
+  get 'dannies/show'
+
+  get 'scheduler/tt'
+  get 'sigans/danny'
   resources :sigans do
     resources :siplies
   end
@@ -13,7 +21,7 @@ Rails.application.routes.draw do
 
  
   get 'crawlers/viewfile'
-  root 'timetable#index'
+  root 'posts#new'
   
   get 'crawlers/searchtest'
   get 'crawlers/result'
@@ -26,6 +34,13 @@ Rails.application.routes.draw do
   #end
   get 'crawlers/individual'
    get 'crawlers/testing'  
-  #위 url을 절대 실행하지 마시오 ! -DB에 또 2880개 정보 들어가버림
+   get 'crawlers/showsigan'
+   
+  get 'crawlers/tt'
   
+   
+  #위 url을 절대 실행하지 마시오 ! -DB에 또 2880개 정보 들어가버림
+  match 'search' => 'crawlers#search', :as =>'search', :via =>:get
+  match 'search_result' =>'crawlers#searchresult', :as => 'searchresult', :via => :post
+  match 'search_result2' =>'crawlers#searchresult2', :as => 'searchresult2', :via => :post
 end

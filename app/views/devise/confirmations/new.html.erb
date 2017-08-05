@@ -1,16 +1,24 @@
-<h2>Resend confirmation instructions</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
-  <%= f.full_error :confirmation_token %>
-
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Resend confirmation instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div class="user_whiteboard">
+    <div class="subtitle">
+    <a href="/" class="logo"><%= image_tag("logo.png") %></a>  
+    <p class="text1">이메일 재인증</p>
+    </div>
+    <div class="boundary3">
+      <div class="form">
+      <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+      <%= f.error_notification %>
+      <%= f.full_error :confirmation_token %>
+        
+          <div class="form-inputs">
+          <%= f.input :email, autofocus: true, :label => false, placeholder: "이메일@korea.ac.kr" %>
+          </div>
+          <div class="form-actions" id="submit">
+          <%= f.button :submit, "이메일 재인증" %>
+          </div>
+      <% end %>
+      </div>
+    </div>
+   <div class="links">
+    <%= render "devise/shared/links" %>
+   </div>
+      </div>

@@ -1,0 +1,72 @@
+<div class="container">
+  <nav>
+    <div class="wrap">
+      <a href="/" class="logo navlogo"><%= image_tag("logo.png") %></a>
+    </div>
+
+    <ul class="account">
+	    <li>
+		    <a href="#">
+			    <span class="userid"><%= current_user.name%>님</span>
+			    <span class="usernickname">(유저닉네임)</span>
+			  </a>
+  		</li>
+	  	<li>|</li>
+		  <li>
+		    <a href="#", class="logout">로그아웃</a>
+		  </li>
+	  </ul>
+	
+    <ul class="menu">
+      <li class="menumargin active"><a href="#">시간표</a></li>
+	    <li><a href="#">자료게시판</a></li>
+	    <li><a href="#">채팅방</a></li>
+	    <li><a href="#">팀플관리</a></li>
+	  </ul>		    
+	</nav>
+	
+	<div class="boundary2 search-box1">
+        <p class="text1 search1 t">시간표 짜기</p>    
+	    
+	    <div class="search-gwamok">
+        <p class="text2 search2 t">과목으로 검색하기</p>
+        <%= form_tag searchresult_path do %>
+            <%= text_field_tag :gwamok %>
+            <%= submit_tag '검색' %>
+        <% end %>
+        </div>
+
+        <div class="search-gyosoo">
+        <p class="text2 search2 t">교수명으로 검색하기</p>
+            <%= form_tag searchresult2_path do %>
+            <%= text_field_tag :gyosoo %>
+            <%= submit_tag '검색' %>
+        <% end %>
+        </div>
+	    
+	</div>		    
+
+
+    <div class="boundary4 search-box2">
+        <% if @mygwamoks %>
+            <div class="searchresult">
+                <p class="text1 result1 t"><%= current_user.name%>님이 듣는 과목 조회</p>
+                <p class="result2 t">* 과목을 클릭하면 과목 개별 페이지로 이동합니다</p>
+                
+                <table class="searchtable">
+                <tr>
+                    <th>강의명</th>
+                    <th>교수명</th>
+                </tr>
+                <% @mygwamoks.each do |m| %>
+                <% @currentgwamokid = m.gwamokid %>
+                <tr>
+                   <td><%= link_to(m.gwamok, crawlers_intersection_path(:currentgwamokid=> @currentgwamokid))%></td>
+                   <td><%= m.gyosoo%></td>
+                </tr>
+                <% end %>
+                </table>
+                <% else %>
+            </div>
+        <% end %>
+    </div>

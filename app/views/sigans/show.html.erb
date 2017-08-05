@@ -56,5 +56,6 @@
   </p>
 <% end %>
 
-<%= link_to '수정하기', edit_sigan_path(@sigan, :currentgwamokid=> @sigan.gwamokid) %> |
+<%= link_to '수정하기', edit_sigan_path(@sigan, :currentgwamokid=> @sigan.gwamokid) %> 
 <%= link_to '돌아가기', sigans_path(:currentgwamokid=> @sigan.gwamokid) %>
+<%= link_to '시간대니?', sigandannies_path %>

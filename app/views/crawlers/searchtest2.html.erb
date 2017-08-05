@@ -1,43 +1,35 @@
-<nav>
+<div class="container">
+  <nav>
     <div class="wrap">
-     
-      <div class="title">
-        <a href="/" class="logo">
-          <%= image_tag("logo.png") %>
-        </a>
-      </div>
-        
-      <ul class="account">
-        <li>
-          <a href="#">
-			   	  <span class="userid">유저아이디</span>
-			   	  <span class="usernickname">(유저닉네임)</span>
-			   	</a>
-        </li>
-        <li>
-          <img src="https://psnprofiles.com/lib/img/icons/40-gld.png" alt="레벨"/>
-        </li>
-        <li class="logout">
-			    <a href="#">로그아웃</a>
-			  </li>
-      </ul>
-        
-      <ul class="menu">
-			  <li class="active"><a href="/timetable">시간표</a></li>
-			  <li><a href="#">자료게시판</a></li>
-			  <li><a href="#">채팅방</a></li>
-			  <li><a href="#">팀플관리</a></li>
-			</ul>
-			
+      <a href="/" class="logo navlogo"><%= image_tag("logo.png") %></a>
     </div>
-</nav>
-  
 
-<div class="search">
-  <p class="text1">강의 찾기</p>
-  
-</div>
-
+    <ul class="account">
+	    <li>
+		    <a href="#">
+			    <span class="userid">유저아이디</span>
+			    <span class="usernickname">(유저닉네임)</span>
+			  </a>
+  		</li>
+	  	<li>|</li>
+		  <li>
+		    <%= link_to "로그아웃", destroy_user_session_path, method: :delete  %>
+		  </li>
+	  </ul>
+	
+    <ul class="menu">
+      <li class="menumargin active"><a href="#">시간표</a></li>
+	    <li><a href="#">자료게시판</a></li>
+	    <li><a href="#">채팅방</a></li>
+	    <li><a href="#">팀플관리</a></li>
+	  </ul>		    
+	</nav>
+			    
+	
+	
+	
+	  
+<h1>SEARCH BAR</h1>
 
 <%= search_form_for @search, url: crawlers_searchtest2_path, method: :get do |f| %>
  
@@ -61,6 +53,9 @@
  
   <div class="actions"><%= f.submit "Search" %></div>
 <% end %>
+
+
+
 
 <table id="crawls">
   <tr>
@@ -95,12 +90,4 @@
 <% end %>
 </table>
 
-        <%= form_tag crawlers_intersection_path do %>
-          <div class="input-field">
-            <%= text_area_tag :gwamokid, nil, class: "materialize-textarea", placeholder: "무슨 생각을 하고 있나요?" %>
-          </div>
-
-          <div class="input-field">
-            <%= button_tag "작성하기", class: "btn" %>
-          </div>
-        <% end %>
+</div>

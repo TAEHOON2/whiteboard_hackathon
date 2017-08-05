@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170805025949) do
+ActiveRecord::Schema.define(version: 20170805123423) do
 
   create_table "crawls", force: :cascade do |t|
     t.string   "gwamokid"
@@ -26,6 +26,21 @@ ActiveRecord::Schema.define(version: 20170805025949) do
     t.string   "timeplace2"
     t.string   "timeplace3"
     t.string   "timeplace4"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "dannies", force: :cascade do |t|
+    t.string   "userid1"
+    t.string   "userid2"
+    t.string   "userid3"
+    t.string   "userid4"
+    t.string   "userid5"
+    t.string   "userid6"
+    t.string   "userid7"
+    t.string   "userid8"
+    t.string   "userid9"
+    t.string   "userid10"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -49,6 +64,21 @@ ActiveRecord::Schema.define(version: 20170805025949) do
   end
 
   add_index "replies", ["post_id"], name: "index_replies_on_post_id"
+
+  create_table "sigandannies", force: :cascade do |t|
+    t.string   "userid1"
+    t.string   "userid2"
+    t.string   "userid3"
+    t.string   "userid4"
+    t.string   "userid5"
+    t.string   "userid6"
+    t.string   "userid7"
+    t.string   "userid8"
+    t.string   "userid9"
+    t.string   "userid10"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "sigans", force: :cascade do |t|
     t.string   "gwamokid"
@@ -74,6 +104,7 @@ ActiveRecord::Schema.define(version: 20170805025949) do
     t.integer  "user_id"
     t.integer  "crawl_id"
     t.string   "gwamokid"
+    t.string   "rhoonjang"
     t.string   "campus"
     t.string   "haksu"
     t.string   "boonban"

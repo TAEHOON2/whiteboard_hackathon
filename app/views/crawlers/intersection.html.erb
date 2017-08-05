@@ -1,8 +1,8 @@
 <div>
-    넘어온 값 : <%= @gwamokid = @currentgwamokid %> <%= @gwamokid%> ex) [cose14100] <!--변수로 보일 것-->
+    넘어온 값 : <%= @gwamokid = @currentgwamokid %> <%= @gwamokid%> <!--변수로 보일 것-->
 </div>
 <%= @currentgwamokid = @gwamokid%>
-<%= link_to("익챗","#")%>
+<%= link_to "익챗", "https://www.facebook.com/"%>
 <%= link_to("팀플대니",:action=>"index", :controller=>"sigans", :currentgwamokid=> @currentgwamokid)%>
 <%= link_to("게시판", :action=>"index", :controller=>"posts", :currentgwamokid=> @currentgwamokid)%>
 <!--:action=>"index", :controller=>"posts", 

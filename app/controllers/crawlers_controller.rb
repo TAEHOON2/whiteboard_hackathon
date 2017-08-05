@@ -1,6 +1,9 @@
 class CrawlersController < ApplicationController
 require 'nokogiri'
 require 'open-uri'
+
+  before_action :authenticate_user!
+
     def create
     end 
     def testing
@@ -56,7 +59,7 @@ end
     @search = Crawl.search(params[:q])
     @gwamoks = @search.result
     @search.build_condition if @search.conditions.empty?
-    @search.build_sort if @search.sorts.empty?
+    @search.build_sort if @search.sorts.empty? 
     end
   
   
@@ -65,13 +68,76 @@ end
     end
     
     def create #추가하기 하면 모델에 추가되는 액션
+    a = []
+    a << params[:timeplace1] << params[:timeplace2] << params[:timeplace3] << params[:timeplace4]
+    ahnroon = ""
+    # puts a.inspect
+    a.each do |x|
+        imsiyoil = ""
+        imsiyoil = x.split('(')[0]
+        next if x == ""
+        case imsiyoil
+            when imsiyoil == "월"
+            imsiyoil = 0
+            when imsiyoil == "화"
+            imsiyoil = 1
+            when imsiyoil == "수"
+            imsiyoil = 2
+            when imsiyoil == "목"
+            imsiyoil = 3
+            when imsiyoil == "금"
+            imsiyoil = 4
+        end
+        if x.split("-")[1].include?(')')
+            imsigyosi = ""
+            if x.split("-")[1].split(')')[0].to_i - x.split("-")[0].split('(')[1].to_i == 2
+            ahnroon = imsiyoil.to_s + "#{x.split("-")[1].split(')')[0].to_i - 1}"+
+            "#{x.split("-")[1].split(')')[0].to_i - 2}"+ "#{x.split("-")[1].split(')')[0].to_i - 3}"
+            else
+            ahnroon = imsiyoil.to_s + "#{x.split("-")[1].split(')')[0].to_i - 1}" +
+            "#{x.split("-")[1].split(')')[0].to_i - 2}"
+            end
+        else
+            imsigyosi = x.split(")")[0].split("(")[1]
+            ahnroon = imsiyoil.to_s + "#{imsigyosi.to_i - 1}"
+        end
+    end
+    ahnroon = params[:gwamok]+ahnroon
     Usergwamok.create(user_id:current_user.id, gwamokid: params[:gwamokid], 
-                     crawl_id: params[:crawl_id], boonban: params[:boonban],gyosoo: params[:gyosoo], gwamok: params[:gwamok])
-    redirect_to crawlers_searchtest2_path
+                     crawl_id: params[:crawl_id], boonban: params[:boonban],
+                     gyosoo: params[:gyosoo], gwamok: params[:gwamok], 
+                     timeplace1: params[:timeplace1], timeplace2: params[:timeplace2],
+                     timeplace3: params[:timeplace3], timeplace4: params[:timeplace4], rhoonjang: ahnroon)
+                    
+                     
+    redirect_to search_path
     end
     
     def individual
-        @mygwamoks=Usergwamok.where(user_id:current_user.id)
+       
         
     end
+    
+    def search
+        @gwamoks = Crawl.where(:gyosoo => params[:q])
+        @mygwamoks=Usergwamok.where(user_id:current_user.id)
+    end
+    
+    def searchresult
+
+         @gwamokfind = Crawl.where("gwamok LIKE '%#{params[:gwamok]}%'")
+    end
+    
+    def searchresult2
+        @gyosoofind = Crawl.where("gyosoo LIKE '%#{params[:gyosoo]}%'")
+        
+    end
+    def showsigan
+    end
+    
+    def tt
+         @mygwamoks=Usergwamok.where(user_id:current_user.id)
+    end
+    
+   
 end
