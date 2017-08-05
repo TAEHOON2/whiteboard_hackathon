@@ -13,3 +13,49 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+
+
+
+
+
+
+
+<div class="graybg">
+  <div class="user_whiteboard">
+    <a href="/" class="logo"><%= image_tag("logo.png") %></a>  
+    <p class="text1">로그인</p>
+    <div class="boundary1">
+      <div class="form">
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        
+          <%= f.error_notification %>
+          <div class="form-inputs">
+            <%= f.input :email, :label => false, required: false, autofocus: true, placeholder: "이메일@korea.ac.kr" %>  
+          </div>
+          <div class="form-inputs">
+            <%= f.input :password, :label => false, required: false, placeholder: "비밀번호 (6자 이상)" %>
+            <%= f.input :password_confirmation, :label => false, required: false, placeholder: "비밀번호 확인" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: "이름" %>
+          </div>
+          
+        
+        
+        
+          <p class="info">* 학교 이메일로 인증번호를 안내해드립니다.</p>
+          <div class="form-actions" id="submit">
+            <%= f.button :submit, "확인" %>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    
+
+    
+    <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+

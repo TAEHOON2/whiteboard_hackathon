@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @currentgwamokid = params[:currentgwamokid]
+    @currentgwamok = params[:currentgwamokid]
   end
 
   # GET /posts/new
@@ -45,6 +45,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+        @currentgwamokid = params[:currentgwamokid]
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
@@ -59,6 +60,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
+        @currentgwamokid = params[:currentgwamokid]
     @post.destroy
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
@@ -69,11 +71,13 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
+      @currentgwamokid = params[:currentgwamokid]
       @post = Post.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
+      @currentgwamokid = params[:currentgwamokid]
       params.require(:post).permit(:gwamokid, :username, :title, :body, :attachment)
     end
 end

@@ -1,5 +1,5 @@
 <h1>새 글 작성하기 </h1>
+<%= @currentgwamokid = @currentgwamokid %>
+<%= render 'form', :currentgwamokid=> @currentgwamokid %>
 
-<%= render 'form' %>
-
-<%= link_to '돌아가기', posts_path %>
+<%= link_to '돌아가기', posts_path(:currentgwamokid=> @currentgwamokid) %>

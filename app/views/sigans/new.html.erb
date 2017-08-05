@@ -1,5 +1,5 @@
 <h1>새 팀플 구하기</h1>
+<%= @currentgwamokid = @currentgwamokid %>
+<%= render 'form',:currentgwamokid=> @currentgwamokid  %>
 
-<%= render 'form' %>
-
-<%= link_to '돌아가기', sigans_path %>
+<%= link_to '돌아가기', sigans_path(:currentgwamokid=> @currentgwamokid) %>

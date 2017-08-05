@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :작성자 %><br>
-    <%= f.text_field :username %>
+    <%= f.text_field :username,:value => current_user.email, :readonly => true %>
   </div>
   <div class="field">
     <%= f.label :제목 %><br>
@@ -32,6 +32,7 @@
     <%= f.file_field :attachment %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "작성하기",:currentgwamokid=> @currentgwamokid%>
+    
   </div>
 <% end %>

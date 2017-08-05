@@ -61,6 +61,7 @@ class SigansController < ApplicationController
   # DELETE /sigans/1.json
   def destroy
     @sigan.destroy
+     @currentgwamokid = params[:currentgwamokid]
     respond_to do |format|
       format.html { redirect_to sigans_url, notice: 'Sigan was successfully destroyed.' }
       format.json { head :no_content }
@@ -70,11 +71,13 @@ class SigansController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sigan
+      @currentgwamokid = params[:currentgwamokid]
       @sigan = Sigan.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sigan_params
+      @currentgwamokid = params[:currentgwamokid]
       params.require(:sigan).permit(:gwamokid, :username, :title, :body, :attachment)
     end
 

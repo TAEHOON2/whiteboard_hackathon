@@ -54,7 +54,8 @@
   <p>
     <%= f.submit %>
   </p>
-<% end %>
 
-<%= link_to '수정하기', edit_post_path(@post) %> |
-<%= link_to '돌아가기', posts_path %>
+<% end %>
+<%= link_to '수정하기', edit_post_path(@post, :currentgwamokid=> @post.gwamokid) %> 
+<%= link_to '돌아가기', posts_path(:currentgwamokid=> @post.gwamokid) %>
+
