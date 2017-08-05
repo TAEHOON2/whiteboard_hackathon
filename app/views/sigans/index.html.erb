@@ -1,33 +1,34 @@
-<p id="notice"><%= notice %></p>
+<div class="postbox">
+  
+  <p class="text1"> 팀플모임방</p>
 
-<h1><%= @currentgwamokid %>에서 팀플맞추기</h1>
-
-<table>
+<div id="wannawrite">
+    <%= link_to '새 글 작성하기', new_sigan_path(:currentgwamokid=> @currentgwamokid)  %>
+  </div>
+  <table class="posttable">
   <thead>
     <tr>
-      <th>현재과목</th>
       <th>작성자</th>
       <th>제목</th>
-      <th>내용</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @sigans.each do |sigan| %>
+    <% @sigans.each do |sigan|
+     if sigan.gwamokid == @currentgwamokid %>
       <tr>
-        <td><%= sigan.gwamokid %></td>
-        <td><%= sigan.username %></td>
+        <td class="post-t"><%= sigan.username %></td>
         <td><%= sigan.title %></td>
-        <td><%= sigan.body %></td>
-        <td><%= link_to '보기', sigan %></td>
-        <td><%= link_to '수정하기', edit_sigan_path(sigan) %></td>
-        <td><%= link_to '삭제하기', sigan, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' } %></td>
+        <td class="post-btn"><%= link_to '보기', sigan %></td>
+        <td class="post-btn"><%= link_to '수정', edit_sigan_path(sigan) %></td>
+        <td class="post-btn"><%= link_to '삭제', sigan, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' } %></td>
       </tr>
+      <% end%> 
     <% end %>
   </tbody>
-</table>
+  </table>
 
-<br>
 
-<%= link_to '새 글 작성하기', new_sigan_path(:currentgwamokid=> @currentgwamokid) %>
+  
+</div>

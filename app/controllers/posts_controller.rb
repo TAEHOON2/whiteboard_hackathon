@@ -7,6 +7,8 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     @currentgwamokid = params[:currentgwamokid]
+    @classname= Usergwamok.where(gwamokid: @currentgwamokid)
+   
   end
 
   # GET /posts/1
@@ -79,6 +81,6 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       @currentgwamokid = params[:currentgwamokid]
-      params.require(:post).permit(:gwamokid, :username, :title, :body, :attachment)
+      params.require(:post).permit(:gwamokid, :username, :title, :body, :attachment, :category)
     end
 end

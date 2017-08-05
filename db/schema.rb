@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170805123423) do
+ActiveRecord::Schema.define(version: 20170805204610) do
 
   create_table "crawls", force: :cascade do |t|
     t.string   "gwamokid"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20170805123423) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "attachment"
+    t.string   "category"
   end
 
   create_table "replies", force: :cascade do |t|
@@ -141,6 +142,7 @@ ActiveRecord::Schema.define(version: 20170805123423) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "name"
+    t.string   "nickname"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

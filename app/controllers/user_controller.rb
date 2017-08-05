@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :edit, :update] # probably want to keep using this
+  after_action :set_nickname
 
   # GET /users
   # GET /users.json
@@ -39,11 +40,29 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
       end
     
+      def set_nickname
+        @user = User.find(params[:id])
+        @n = ["예쁜","목이 긴","착한","나쁜","엄청난","귀여운","못생긴"].sample(1).join(',')
+        @q = ["민들레","기린","멋쟁이","못난이","귀염둥이","똘똘이","하마","공룡"].sample(1).join(',')
+        @w = "#{@n + @q}"
+        @user.update(nickname: @w)
+      end
+      
       # Never trust parameters from the scary internet, only allow the white list through.
       def user_params
-        params.require(:user).permit(:role, :user_name)
+        params.require(:user).permit(:role, :user_name, :nickname)
       end
     
+    def new
+       @n = ["예쁜","목이 긴","착한","나쁜","엄청난","귀여운","못생긴"].sample(1).join(',')
+       @q = ["민들레","기린","멋쟁이","못난이","귀염둥이","똘똘이","하마","공룡"].sample(1).join(',')
+       @w = "#{@n + @q}"
+    end
+    
+    def nicknamecreate
+      User.create(nickname: params[:nickname])
+      
+    end
 end
 
 

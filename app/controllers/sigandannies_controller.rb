@@ -10,6 +10,9 @@ class SigandanniesController < ApplicationController
   # GET /sigandannies/1
   # GET /sigandannies/1.json
   def show
+    @userinfo = User.all
+    @usergwamokinfo = Usergwamok.all
+    @sigandannies = Sigandanny.all
   end
 
   # GET /sigandannies/new

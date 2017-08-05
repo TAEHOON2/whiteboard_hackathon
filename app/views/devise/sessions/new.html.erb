@@ -1,4 +1,16 @@
-<div class="user_whiteboard">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>화이트보드</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  
+  <%= csrf_meta_tags %>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <div class="container">
+    <div class="user_whiteboard">
     <div class="subtitle">
     <a href="/" class="logo"><%= image_tag("logo.png") %></a>  
     <p id="maintitle">WHITE BOARD</p>
@@ -21,4 +33,14 @@
    <div class="links">
     <%= render "devise/shared/links" %>
    </div>
-      </div>
+</div>
+    
+    
+    
+    
+    
+  </div>
+</body>
+  
+
+</html>

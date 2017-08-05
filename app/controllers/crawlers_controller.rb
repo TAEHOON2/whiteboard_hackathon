@@ -11,7 +11,7 @@ require 'open-uri'
         col = ["0231","0140","0217","0217","0217","0217","0217","0217","0217","0217","3928","3928","5338","0143","0143","0143","0143","0143","0143","0143","0143","0143","0143","0143","0143","0143","0143","0143","0143","0143","0143","0143","0143","0143","0143","5256","0137","4669","4669","4669","4669","4669","4669","4669","4669","4669","0234","0234","0234","0234","0234","0234","0234","0234","0234","0234","0234","4652","4652","4652","4652","4652","4652","4652","4652","0226","0226","0209","0209","0209","0209","0209","0209","0197","0197","0197","0197","0197","0197","5720","5720","5720","5436","3930","3930","5961","3641","3643","5963","3645"]
         dept =["0233","0142","4065","4952","5320","4630","5597","5204","4887","4084","3931","5943","5339","4067","5672","6095","6093","0145","0156","0153","0154","0803","0152","0158","0151","4391","0146","6342","6094","5539","0157","0155","0147","0148","0159","5257","0139","4672","5694","5693","4671","5696","5695","4676","4670","4673","0238","0236","0240","5753","0239","0243","0241","0242","0237","0245","4638","4654","4719","4653","4656","4425","5564","4657","5019","0228","0229","4063","0212","0211","4603","0215","0213","5015","0200","5046","0199","0201","0203","5965","5944","5722","5437","4728","5188","5960","3649","3651","5964","3653"]
     
-        for j in (0..3)
+        for j in (0..89)
             doc = Nokogiri::HTML(open("http://sugang.korea.ac.kr/lecture/LecMajorSub.jsp?lang=KOR&yy=2017&tm=2R&sCampus=1&col=#{col[j]}&dept=#{dept[j]}","r:binary").read.encode("utf-8", "euc-kr"))
         for i in (1..32)
             campus = doc.css(".page//table//tr:nth-child(#{i})//td:nth-child(1)").inner_text.gsub(/[ ]/,"")
@@ -70,36 +70,35 @@ end
     def create #추가하기 하면 모델에 추가되는 액션
     a = []
     a << params[:timeplace1] << params[:timeplace2] << params[:timeplace3] << params[:timeplace4]
+    a
     ahnroon = ""
-    # puts a.inspect
     a.each do |x|
-        imsiyoil = ""
-        imsiyoil = x.split('(')[0]
         next if x == ""
-        case imsiyoil
-            when imsiyoil == "월"
+        k = x
+        imsiyoil = ""
+        givenyoil = k.split('(')[0]
+        case givenyoil
+            when "월"
             imsiyoil = 0
-            when imsiyoil == "화"
+            when "화"
             imsiyoil = 1
-            when imsiyoil == "수"
+            when "수"
             imsiyoil = 2
-            when imsiyoil == "목"
+            when "목"
             imsiyoil = 3
-            when imsiyoil == "금"
+            else "금"
             imsiyoil = 4
         end
-        if x.split("-")[1].include?(')')
-            imsigyosi = ""
-            if x.split("-")[1].split(')')[0].to_i - x.split("-")[0].split('(')[1].to_i == 2
-            ahnroon = imsiyoil.to_s + "#{x.split("-")[1].split(')')[0].to_i - 1}"+
-            "#{x.split("-")[1].split(')')[0].to_i - 2}"+ "#{x.split("-")[1].split(')')[0].to_i - 3}"
+        if k.split("(")[1].split(")")[0].include?('-')
+            if k.split("-")[1].split(')')[0].to_i - k.split("-")[0].split('(')[1].to_i == 2
+            ahnroon = ahnroon+"/"+"#{imsiyoil}"+"#{k.split("-")[1].split(')')[0].to_i - 1}"+"/"+
+            "#{imsiyoil}"+"#{k.split("-")[1].split(')')[0].to_i - 2}"+ "/"+"#{imsiyoil}"+"#{k.split("-")[1].split(')')[0].to_i - 3}"
             else
-            ahnroon = imsiyoil.to_s + "#{x.split("-")[1].split(')')[0].to_i - 1}" +
-            "#{x.split("-")[1].split(')')[0].to_i - 2}"
+            ahnroon = ahnroon+"/"+"#{imsiyoil}" + "#{k.split("-")[1].split(')')[0].to_i - 1}" +"/"+"#{imsiyoil}"+
+            "#{k.split("-")[1].split(')')[0].to_i - 2}"
             end
         else
-            imsigyosi = x.split(")")[0].split("(")[1]
-            ahnroon = imsiyoil.to_s + "#{imsigyosi.to_i - 1}"
+            ahnroon = ahnroon+"/"+"#{imsiyoil}" + "#{k.split(")")[0].split("(")[1].to_i - 1}"
         end
     end
     ahnroon = params[:gwamok]+ahnroon
@@ -121,6 +120,7 @@ end
     def search
         @gwamoks = Crawl.where(:gyosoo => params[:q])
         @mygwamoks=Usergwamok.where(user_id:current_user.id)
+        render :layout => false
     end
     
     def searchresult
@@ -135,8 +135,9 @@ end
     def showsigan
     end
     
+
     def tt
-         @mygwamoks=Usergwamok.where(user_id:current_user.id)
+         @mygwamoks=Usergwamok.all
     end
     
    

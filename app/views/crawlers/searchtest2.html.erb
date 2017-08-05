@@ -1,34 +1,3 @@
-<div class="container">
-  <nav>
-    <div class="wrap">
-      <a href="/" class="logo navlogo"><%= image_tag("logo.png") %></a>
-    </div>
-
-    <ul class="account">
-	    <li>
-		    <a href="#">
-			    <span class="userid">유저아이디</span>
-			    <span class="usernickname">(유저닉네임)</span>
-			  </a>
-  		</li>
-	  	<li>|</li>
-		  <li>
-		    <%= link_to "로그아웃", destroy_user_session_path, method: :delete  %>
-		  </li>
-	  </ul>
-	
-    <ul class="menu">
-      <li class="menumargin active"><a href="#">시간표</a></li>
-	    <li><a href="#">자료게시판</a></li>
-	    <li><a href="#">채팅방</a></li>
-	    <li><a href="#">팀플관리</a></li>
-	  </ul>		    
-	</nav>
-			    
-	
-	
-	
-	  
 <h1>SEARCH BAR</h1>
 
 <%= search_form_for @search, url: crawlers_searchtest2_path, method: :get do |f| %>
@@ -89,5 +58,3 @@
   </tr>
 <% end %>
 </table>
-
-</div>

@@ -1,31 +1,33 @@
-<div class="container">
-  <nav>
-    <div class="wrap">
-      <a href="/" class="logo navlogo"><%= image_tag("logo.png") %></a>
-    </div>
-
-    <ul class="account">
-	    <li>
-		    <a href="#">
-			    <span class="userid"><%= current_user.name%>님</span>
-			    <span class="usernickname">(유저닉네임)</span>
-			  </a>
-  		</li>
-	  	<li>|</li>
-		  <li>
-		    <a href="#", class="logout">로그아웃</a>
-		  </li>
-	  </ul>
-	
-    <ul class="menu">
-      <li class="menumargin active"><a href="#">시간표</a></li>
-	    <li><a href="#">자료게시판</a></li>
-	    <li><a href="#">채팅방</a></li>
-	    <li><a href="#">팀플관리</a></li>
-	  </ul>		    
-	</nav>
-	
-	<div class="boundary2 search-box1">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>화이트보드</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  
+  <%= csrf_meta_tags %>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <div class="container">
+    <nav class="navbarapp", style="padding-top: 17px;">
+        <div class="wrap">
+            <a href="/" class="logo navlogo"><%= image_tag("logo.png") %></a>
+        </div>
+    
+        <ul class="account">
+            <li>
+                  <% if current_user %>
+                    <span class="userid"><%= current_user.name%>님</span><span class="break">|</span>
+                    <%= link_to '로그아웃', destroy_user_session_path, method: :delete %>
+                  <% else %>
+  
+                  <% end %>
+            </li>
+        </ul>
+            
+    </nav>
+    <div class="boundary2 search-box1">
         <p class="text1 search1 t">시간표 짜기</p>    
 	    
 	    <div class="search-gwamok">
@@ -50,23 +52,111 @@
     <div class="boundary4 search-box2">
         <% if @mygwamoks %>
             <div class="searchresult">
-                <p class="text1 result1 t"><%= current_user.name%>님이 듣는 과목 조회</p>
+                <p class="text1 result1 t"><%= current_user.name%>님의 수강목록</p><br>
                 <p class="result2 t">* 과목을 클릭하면 과목 개별 페이지로 이동합니다</p>
                 
                 <table class="searchtable">
+                <thead>
                 <tr>
                     <th>강의명</th>
                     <th>교수명</th>
                 </tr>
+                </thead>
+                <tbody>
                 <% @mygwamoks.each do |m| %>
                 <% @currentgwamokid = m.gwamokid %>
                 <tr>
                    <td><%= link_to(m.gwamok, crawlers_intersection_path(:currentgwamokid=> @currentgwamokid))%></td>
-                   <td><%= m.gyosoo%></td>
+                   <td class="gyosoo"><%= m.gyosoo%></td>
                 </tr>
                 <% end %>
+                </tbody>
                 </table>
                 <% else %>
             </div>
         <% end %>
-    </div>
+  
+  
+  </div>
+  </div>
+  <table class="siganpyosi >
+   <div id="head_nav">
+        <tr>
+            <th>교시</th>
+            <th>월요일</th>
+            <th>화요일</th>
+            <th>수요일</th>
+            <th>목요일</th>
+            <th>금요일</th>
+        </tr>
+    </div>  
+        
+        <% c = [] %>
+        <% @mygwamoks.each do |x| %>
+        <% if x["user_id"] == current_user.id %>
+        <% c << x["timeplace1"] << x["timeplace2"] << x["timeplace3"] << x["timeplace4"] %>
+        <% end %>
+        <% end %>
+        <% c.reject(&:empty?) %>
+        <% yoilgyosi = [] %>
+        <br>
+        <% c.each do|x| %>
+        <% k = x %>
+        <% next if x == ""%>
+        <% imsiyoil = "" %>
+        <% givenyoil = k.split('(')[0] %>
+        <% case givenyoil%>
+            <% when "월" %>
+            <% imsiyoil = 0 %>
+            <% when "화" %>
+            <% imsiyoil = 1 %>
+            <% when "수" %>
+            <% imsiyoil = 2 %>
+            <% when "목" %>
+            <% imsiyoil = 3 %>
+            <% when "금" %>
+        <% imsiyoil = 4 %>
+    <% end %>
+    <% if k.split("(")[1].split(")")[0].include?('-') %>
+        <% imsigyosi = "" %>
+        <% if k.split("-")[1].split(')')[0].to_i - k.split("-")[0].split('(')[1].to_i == 2 %>
+        <% yoilgyosi << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 1] %>
+        <% yoilgyosi << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 2] %>
+        <% yoilgyosi << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 3] %>
+        <% else %>
+        <% yoilgyosi << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 1] %>
+        <% yoilgyosi << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 2] %>
+        <% end %>
+    <% else %>
+        <% imsigyosi = k.split(')')[0].split('(')[1] %>
+        <% yoilgyosi << [imsiyoil.to_i,imsigyosi.to_i - 1] %>
+    <% end %>
+<% end %>
+<% yoilgyosi %>
+<br>
+<% n = "" %>
+<% n = yoilgyosi.count - 1 %>
+    <tr>
+         <% for j in (0..8)%>  <!-- j는 교시  k 는 요일 -->
+        <th><%="#{j+1}"%>교시</th>
+        <% for k in (0..4)%>
+            <td id=<%= "#{k}"+"#{j}"%>>
+                <% for i in (0..n)%>
+                <% m = "" %>
+                <% l = "" %>
+                <% m = yoilgyosi[i][0] %>
+                <% l = yoilgyosi[i][1] %>
+                <% if m == k && l == j%>
+                <%="수업있음"%>
+                <% end %>
+                <% end %>
+                </td>
+        <% end%>
+    </tr>
+     <% end%>
+</table>
+ 
+</body>
+  
+
+</html>

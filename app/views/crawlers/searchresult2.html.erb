@@ -1,8 +1,21 @@
-<h1>Search result 2</h1>
+<div class="result-box">
+  <p class="text1">교수명으로 검색한 결과</p>
 
 
 <table id="crawlss">
-  
+  <thead>
+  <tr>
+    <th>캠퍼스</th>
+    <th>학수번호</th>
+    <th>분반</th>
+    <th>이수</th>
+    <th>강의명</th>
+    <th>교수명</th>
+    <th colspan="5">시간/장소</th>
+
+  </tr>
+  </thead>
+  <tbody>
 <% @gyosoofind.each do |g| %>
   <tr>
     <td><%= link_to(g.campus, "#") %></td>
@@ -15,22 +28,22 @@
     <td><%= g.timeplace2 %></td>
     <td><%= g.timeplace3 %></td>
     <td><%= g.timeplace4 %></td>
-
-     <%= form_tag crawlers_create_path do %>
-    <td><%=hidden_field_tag "crawl_id", g.id%></td>
-    <td><%=hidden_field_tag "gwamokid", g.gwamokid%></td>
-    <td><%=hidden_field_tag "boonban", g.boonban%></td>
-    <td><%=hidden_field_tag "gwamok", g.gwamok%></td>
-    <td><%=hidden_field_tag "gyosoo", g.gyosoo%></td>
-    <td><%=hidden_field_tag "timeplace1", g.timeplace1%></td>
-    <td><%=hidden_field_tag "timeplace2", g.timeplace2%></td>
-    <td><%=hidden_field_tag "timeplace3", g.timeplace3%></td>
-    <td><%=hidden_field_tag "timeplace4", g.timeplace4%></td>
-
-    <td><%= button_to "추가하기", crawlers_create_path, method:"post" %></td>
-   <% end%>
+    <%= form_tag crawlers_create_path do %>
+    <%=hidden_field_tag "crawl_id", g.id%>
+    <%=hidden_field_tag "gwamokid", g.gwamokid%>
+    <%=hidden_field_tag "boonban", g.boonban%>
+    <%=hidden_field_tag "gwamok", g.gwamok%>
+    <%=hidden_field_tag "gyosoo", g.gyosoo%>
+    <%=hidden_field_tag "timeplace1", g.timeplace1%>
+    <%=hidden_field_tag "timeplace2", g.timeplace2%>
+    <%=hidden_field_tag "timeplace3", g.timeplace3%>
+    <%=hidden_field_tag "timeplace4", g.timeplace4%>
+    <td class="crawlss-btn"><%= button_to "추가하기", crawlers_create_path, method:"post" %></td>
+   <% end %>
  
   </tr>
 <% end %>
+</tbody>
 </table>
 
+</div>

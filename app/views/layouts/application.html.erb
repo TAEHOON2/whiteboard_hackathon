@@ -4,11 +4,38 @@
   <title>화이트보드</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  
   <%= csrf_meta_tags %>
   <meta charset="UTF-8">
 </head>
 <body>
-  <%= yield %>
+  <div class="container">
+    <nav class="navbarapp">
+        <div class="wrap">
+            <a href="/" class="logo navlogo"><%= image_tag("logo.png") %></a>
+        </div>
+    
+        <ul class="account">
+            <li>
+                  <% if current_user %>
+                    <span class="userid"><%= current_user.name%>님</span>
+                    <span class="break">|</span>
+                    <%= link_to '로그아웃', destroy_user_session_path, method: :delete %>
+                  <% else %>
+  
+                  <% end %>
+            </li>
+        </ul>
+            
+        <ul class="menu">
+            <li class="menumargin"><%= link_to "나의 시간표", :action=>"search", :controller=>"crawlers"%></li>
+            <li><%= link_to "자유게시판", :action=>"index", :controller=>"posts", :currentgwamokid=> @currentgwamokid %></li>
+            <li><%= link_to "팀플모임방", :action=>"index", :controller=>"sigans", :currentgwamokid=> @currentgwamokid %></li>
+            <li><a href="#">익명채팅방</a></li>
+        </ul>		    
+    </nav>
+    <%= yield %>
+  </div>
 </body>
   
 

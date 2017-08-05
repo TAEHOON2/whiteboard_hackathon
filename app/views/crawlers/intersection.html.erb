@@ -1,10 +1,14 @@
-<div>
-    넘어온 값 : <%= @gwamokid = @currentgwamokid %> <%= @gwamokid%> <!--변수로 보일 것-->
+<div class="hidden_text">
+        넘어온 값 : <%= @gwamokid = @currentgwamokid %> <%= @gwamokid %> <!--변수로 보일 것-->
+    
+    <%= @currentgwamokid = @gwamokid %>
 </div>
-<%= @currentgwamokid = @gwamokid%>
-<%= link_to "익챗", "https://www.facebook.com/"%>
-<%= link_to("팀플대니",:action=>"index", :controller=>"sigans", :currentgwamokid=> @currentgwamokid)%>
-<%= link_to("게시판", :action=>"index", :controller=>"posts", :currentgwamokid=> @currentgwamokid)%>
+    
+    <div class="menu_images">
+        <div class="pics"><%= link_to image_tag("team.jpg"), :action=>"index", :controller=>"sigans", :currentgwamokid=> @currentgwamokid %></div>
+        <div class="pics"><%= link_to image_tag("board.jpg"), :action=>"index", :controller=>"posts", :currentgwamokid=> @currentgwamokid %></div>
+        <div class="pics"><%= link_to image_tag("chat.jpg"), :action=>"index", :controller=>"posts", :currentgwamokid=> @currentgwamokid %></div>
+    </div>
 <!--:action=>"index", :controller=>"posts", 
 <!--#Post.index(:currentgwamokid => @currentgwamokid)
 <!--<form method="POST" action="/posts">-->

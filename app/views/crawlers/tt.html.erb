@@ -1,72 +1,76 @@
 <table width="80%" align="center" >
-    <div id="head_nav">
-    <tr>
-        <th>Time</th>
-        <th>Monday</th>
-        <th>Tuesday</th>
-        <th>Wednesday</th>
-        <th>Thrusday</th>
-        <th>Friday</th>
-    </tr>
-</div>  
-
-    <tr>
-        <th>1교시</th>
+   <div id="head_nav">
+        <tr>
+            <th>Time</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+        </tr>
+    </div>  
         
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            
-        </div>
-    </tr>
-
+        <% c = [] %>
+        <% @mygwamoks.each do |x| %>
+        <% if x["user_id"] == current_user.id %>
+        <% c << x["timeplace1"] << x["timeplace2"] << x["timeplace3"] << x["timeplace4"] %>
+        <% end %>
+        <% end %>
+        <% c.reject(&:empty?) %>
+        <% yoilgyosi = [] %>
+        <br>
+        <% c.each do|x| %>
+        <% k = x %>
+        <% next if x == ""%>
+        <% imsiyoil = "" %>
+        <% givenyoil = k.split('(')[0] %>
+        <% case givenyoil%>
+            <% when "월" %>
+            <% imsiyoil = 0 %>
+            <% when "화" %>
+            <% imsiyoil = 1 %>
+            <% when "수" %>
+            <% imsiyoil = 2 %>
+            <% when "목" %>
+            <% imsiyoil = 3 %>
+            <% when "금" %>
+        <% imsiyoil = 4 %>
+    <% end %>
+    <% if k.split("(")[1].split(")")[0].include?('-') %>
+        <% imsigyosi = "" %>
+        <% if k.split("-")[1].split(')')[0].to_i - k.split("-")[0].split('(')[1].to_i == 2 %>
+        <% yoilgyosi << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 1] %>
+        <% yoilgyosi << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 2] %>
+        <% yoilgyosi << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 3] %>
+        <% else %>
+        <% yoilgyosi << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 1] %>
+        <% yoilgyosi << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 2] %>
+        <% end %>
+    <% else %>
+        <% imsigyosi = k.split(')')[0].split('(')[1] %>
+        <% yoilgyosi << [imsiyoil.to_i,imsigyosi.to_i - 1] %>
+    <% end %>
+<% end %>
+<% yoilgyosi %>
+<br>
+<% n = "" %>
+<% n = yoilgyosi.count - 1 %>
     <tr>
-        <th>2교시</td>
-        
-            <td>Math-2</td>
-            <td>Chemestry-2</td>
-            <td>Physics-1</td>
-            <td>Hindi</td>
-            <td>English</td>
-
-        </div>
+         <% for j in (0..8)%>  <!-- j는 교시  k 는 요일 -->
+        <th><%="#{j}"%>교시</th>
+        <% for k in (0..4)%>
+            <td id=<%= "#{k}"+"#{j}"%>>
+                <% for i in (0..n)%>
+                <% m = "" %>
+                <% l = "" %>
+                <% m = yoilgyosi[i][0] %>
+                <% l = yoilgyosi[i][1] %>
+                <% if m == k && l == j%>
+                <%="#{k}"+"#{j}"+"수업있음"%>
+                <% end %>
+                <% end %>
+                </td>
+        <% end%>
     </tr>
-
-    <tr>
-        <th>3교시</td>
-        
-            <td>Hindi</td>
-            <td>English</td>
-            <td>Math-1</td>
-            <td>Chemistry</td>
-            <td>Physics</td>
-
-        </div>
-    </tr>
-
-    <tr>
-        <th>4교시</td>
-        
-            <td>Cumm. Skill</td>
-            <td>Sports</td>
-            <td>English</td>
-            <td>Computer Lab</td>
-            <td>Header</td>
-
-        </div>
-    </tr>
-
-    <tr>
-        <th>5교시</td>
-        
-            <td>Header</td>
-            <td>Header</td>
-            <td>Header</td>
-            <td>Header</td>
-            <td>Header</td>
-        </div>
-    </tr>
-    
+     <% end%>
 </table>

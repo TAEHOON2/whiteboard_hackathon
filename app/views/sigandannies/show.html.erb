@@ -1,92 +1,56 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Userid1:</strong>
-  <%= @sigandanny.userid1 %>
-</p>
 
-<p>
-  <strong>Userid2:</strong>
-  <%= @sigandanny.userid2 %>
-</p>
+<!-- 여기부터 -->
+<% userid = "" %>
+<% @userinfo.each do |x| %> <!--userinfo에는 user모델 -->
+<% if x["name"] == @sigandanny.userid1 %>
+<% userid = x["id"] %>
+<% end %>
+<% end %>
 
-<p>
-  <strong>Userid3:</strong>
-  <%= @sigandanny.userid3 %>
-</p>
-
-<p>
-  <strong>Userid4:</strong>
-  <%= @sigandanny.userid4 %>
-</p>
-
-<p>
-  <strong>Userid5:</strong>
-  <%= @sigandanny.userid5 %>
-</p>
-
-<p>
-  <strong>Userid6:</strong>
-  <%= @sigandanny.userid6 %>
-</p>
-
-<p>
-  <strong>Userid7:</strong>
-  <%= @sigandanny.userid7 %>
-</p>
-
-<p>
-  <strong>Userid8:</strong>
-  <%= @sigandanny.userid8 %>
-</p>
-
-<p>
-  <strong>Userid9:</strong>
-  <%= @sigandanny.userid9 %>
-</p>
-
-<p>
-  <strong>Userid10:</strong>
-  <%= @sigandanny.userid10 %>
-</p>
-<% a = "목(1-2) 우정간호학관 101호" %>
-<% b = "수(4-6) 현차관 101호" %>
-<% d = "월(2) LG-POSCO관 304호" %>
-<% z = "금(3-5) LG-POSCO관 304호"%>
-<% y = "화(7-9) LG-POSCO관 304호"%>
+<% c = [] %>
+<% @usergwamokinfo.each do |x| %> <!--usergwamokinfo에는 usergwamok모델 -->
+<% if x["user_id"] == userid %>
+<% c << x["timeplace1"] << x["timeplace2"] << x["timeplace3"] << x["timeplace4"] %>
+<% end %>
+<% end %>
+<% c.reject(&:empty?) %>
 <% yoilgyosi = [] %>
-
+<br>
 <% c.each do|x| %>
+<% k = x %>
+<% next if x == ""%>
 <% imsiyoil = "" %>
-<% imsiyoil = x.split('(')[0] %>
-    <% case %>
-        <% when imsiyoil == "월" %>
+<% givenyoil = k.split('(')[0] %>
+    <% case givenyoil%>
+        <% when "월" %>
         <% imsiyoil = 0 %>
-        <% when imsiyoil == "화" %>
+        <% when "화" %>
         <% imsiyoil = 1 %>
-        <% when imsiyoil == "수" %>
+        <% when "수" %>
         <% imsiyoil = 2 %>
-        <% when imsiyoil == "목" %>
+        <% when "목" %>
         <% imsiyoil = 3 %>
-        <% when imsiyoil == "금" %>
+        <% when "금" %>
         <% imsiyoil = 4 %>
     <% end %>
-    <% if x.split("-")[1].include? ")" %>
+    <% if k.split("(")[1].split(")")[0].include?('-') %>
         <% imsigyosi = "" %>
-        <% if x.split("-")[1].split(')')[0].to_i - x.split("-")[0].split('(')[1].to_i == 2 %>
-        <% yoilgyosi << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 1] %>
-        <% yoilgyosi << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 2] %>
-        <% yoilgyosi << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 3] %>
+        <% if k.split("-")[1].split(')')[0].to_i - k.split("-")[0].split('(')[1].to_i == 2 %>
+        <% yoilgyosi << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 1] %>
+        <% yoilgyosi << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 2] %>
+        <% yoilgyosi << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 3] %>
         <% else %>
-        <% yoilgyosi << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 1] %>
-        <% yoilgyosi << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 2] %>
+        <% yoilgyosi << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 1] %>
+        <% yoilgyosi << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 2] %>
         <% end %>
     <% else %>
-        <% imsigyosi = x.split(')')[0].split('(')[1] %>
+        <% imsigyosi = k.split(')')[0].split('(')[1] %>
         <% yoilgyosi << [imsiyoil.to_i,imsigyosi.to_i - 1] %>
     <% end %>
 <% end %>
-<%= yoilgyosi %>
+<% yoilgyosi %>
 <!-- [요일, 교시], 교시: 0(1교시) 1(2교시) 2(3교시)... 9(10교시) / 요일: 0(월요일) 1(화요일)...4(금요일) --
 <!-- 대니를 위해 행렬 생성해봄 -->
 <% dannymatrix = [] %>
@@ -96,54 +60,60 @@
 <!--x[1]는 교시 -->
 <% dannymatrix[x[0]][x[1]] = 1 %>
 <% end %>
-<%= dannymatrix %>
-<!-- 대니 매트릭스는 여기까지 -->
-<!-- 이제 두 번째 사람 등장 -->
-<% e = "금(1-2) 우정간호학관 101호" %>
-<% f = "수(4-6) 현차관 101호" %>
-<% g = "화(2) LG-POSCO관 304호" %>
-<% w = "월(6-8) LG-POSCO관 304호"%>
-<% q = "목(2-4) LG-POSCO관 304호"%>
-<% h = [] %>
-<br>
-<% h << e << f << g << w << q %>
-<br>
+<% dannymatrix %>
+<!-- 여기까지 한 명 -->
+
+<% userid2 = "" %>
+<% @userinfo.each do |x| %>
+<% if x["name"] == @sigandanny.userid2 %>
+<% userid2 = x["id"] %>
+<% end %>
+<% end %>
 
 
-<!--날짜 뽑아내기 -->
+<% d = [] %>
+<% @usergwamokinfo.each do |x| %>
+<% if x["user_id"] == userid2 %>
+<% d << x["timeplace1"] << x["timeplace2"] << x["timeplace3"] << x["timeplace4"] %>
+<% end %>
+<% end %>
+<% d.reject(&:empty?) %>
 <% yoilgyosi2 = [] %>
-
-<% h.each do|x| %>
+<br>
+<% d.each do|x| %>
+<% k = x %>
+<% next if x == ""%>
 <% imsiyoil = "" %>
-<% imsiyoil = x.split('(')[0] %>
-    <% case %>
-        <% when imsiyoil == "월" %>
+<% givenyoil = k.split('(')[0] %>
+    <% case givenyoil%>
+        <% when "월" %>
         <% imsiyoil = 0 %>
-        <% when imsiyoil == "화" %>
+        <% when "화" %>
         <% imsiyoil = 1 %>
-        <% when imsiyoil == "수" %>
+        <% when "수" %>
         <% imsiyoil = 2 %>
-        <% when imsiyoil == "목" %>
+        <% when "목" %>
         <% imsiyoil = 3 %>
-        <% when imsiyoil == "금" %>
+        <% when "금" %>
         <% imsiyoil = 4 %>
     <% end %>
-    <% if x.split("-")[1].include? ")" %>
+    <% if k.split("(")[1].split(")")[0].include?('-') %>
         <% imsigyosi = "" %>
-        <% if x.split("-")[1].split(')')[0].to_i - x.split("-")[0].split('(')[1].to_i == 2 %>
-        <% yoilgyosi2 << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 1] %>
-        <% yoilgyosi2 << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 2] %>
-        <% yoilgyosi2 << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 3] %>
+        <% if k.split("-")[1].split(')')[0].to_i - k.split("-")[0].split('(')[1].to_i == 2 %>
+        <% yoilgyosi2 << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 1] %>
+        <% yoilgyosi2 << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 2] %>
+        <% yoilgyosi2 << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 3] %>
         <% else %>
-        <% yoilgyosi2 << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 1] %>
-        <% yoilgyosi2 << [imsiyoil.to_i,x.split("-")[1].split(')')[0].to_i - 2] %>
+        <% yoilgyosi2 << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 1] %>
+        <% yoilgyosi2 << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 2] %>
         <% end %>
     <% else %>
-        <% imsigyosi = x.split(')')[0].split('(')[1] %>
+        <% imsigyosi = k.split(')')[0].split('(')[1] %>
         <% yoilgyosi2 << [imsiyoil.to_i,imsigyosi.to_i - 1] %>
     <% end %>
 <% end %>
-<%= yoilgyosi2 %>
+<% yoilgyosi2 %>
+
 <% dannymatrix2 = [] %>
 <% dannymatrix2 = [[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0]]%>
 <% yoilgyosi2.each do |x| %>
@@ -151,11 +121,136 @@
 <!--x[1]는 교시 -->
 <% dannymatrix2[x[0]][x[1]] = 1 %>
 <% end %>
-<%= dannymatrix2 %>
-<%= integratedanny = []%>
-<%= integratedanny << dannymatrix %>
-<%= integratedanny << dannymatrix2 %>
+<% dannymatrix2 %>
+<!-- 여기까지 두 명 -->
+<% userid3 = "" %>
+<% @userinfo.each do |x| %>
+<% if x["name"] == @sigandanny.userid3 %>
+<% userid3 = x["id"] %>
+<% end %>
+<% end %>
 
+
+<% e = [] %>
+<% @usergwamokinfo.each do |x| %>
+<% if x["user_id"] == userid3 %>
+<% e << x["timeplace1"] << x["timeplace2"] << x["timeplace3"] << x["timeplace4"] %>
+<% end %>
+<% end %>
+<% e.reject(&:empty?) %>
+<% yoilgyosi3 = [] %>
+<br>
+<% e.each do|x| %>
+<% k = x %>
+<% next if x == ""%>
+<% imsiyoil = "" %>
+<% givenyoil = k.split('(')[0] %>
+    <% case givenyoil%>
+        <% when "월" %>
+        <% imsiyoil = 0 %>
+        <% when "화" %>
+        <% imsiyoil = 1 %>
+        <% when "수" %>
+        <% imsiyoil = 2 %>
+        <% when "목" %>
+        <% imsiyoil = 3 %>
+        <% when "금" %>
+        <% imsiyoil = 4 %>
+    <% end %>
+    <% if k.split("(")[1].split(")")[0].include?('-') %>
+        <% imsigyosi = "" %>
+        <% if k.split("-")[1].split(')')[0].to_i - k.split("-")[0].split('(')[1].to_i == 2 %>
+        <% yoilgyosi3 << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 1] %>
+        <% yoilgyosi3 << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 2] %>
+        <% yoilgyosi3 << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 3] %>
+        <% else %>
+        <% yoilgyosi3 << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 1] %>
+        <% yoilgyosi3 << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 2] %>
+        <% end %>
+    <% else %>
+        <% imsigyosi = k.split(')')[0].split('(')[1] %>
+        <% yoilgyosi3 << [imsiyoil.to_i,imsigyosi.to_i - 1] %>
+    <% end %>
+<% end %>
+<% yoilgyosi3 %>
+
+<% dannymatrix3 = [] %>
+<% dannymatrix3 = [[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0]]%>
+<% yoilgyosi3.each do |x| %>
+<!--x[0]는 요일 -->
+<!--x[1]는 교시 -->
+<% dannymatrix3[x[0]][x[1]] = 1 %>
+<% end %>
+<% dannymatrix3 %>
+<!--여기까지 3명 -->
+
+<% userid4 = "" %>
+<% @userinfo.each do |x| %>
+<% if x["name"] == @sigandanny.userid4 %>
+<% userid4 = x["id"] %>
+<% end %>
+<% end %>
+
+
+
+<% f = [] %>
+<% @usergwamokinfo.each do |x| %>
+<% if x["user_id"] == userid4 %>
+<% f << x["timeplace1"] << x["timeplace2"] << x["timeplace3"] << x["timeplace4"] %>
+<% end %>
+<% end %>
+<% f.reject(&:empty?) %>
+<% yoilgyosi4 = [] %>
+<br>
+<% f.each do|x| %>
+<% k = x %>
+<% next if x == ""%>
+<% imsiyoil = "" %>
+<% givenyoil = k.split('(')[0] %>
+    <% case givenyoil%>
+        <% when "월" %>
+        <% imsiyoil = 0 %>
+        <% when "화" %>
+        <% imsiyoil = 1 %>
+        <% when "수" %>
+        <% imsiyoil = 2 %>
+        <% when "목" %>
+        <% imsiyoil = 3 %>
+        <% when "금" %>
+        <% imsiyoil = 4 %>
+    <% end %>
+    <% if k.split("(")[1].split(")")[0].include?('-') %>
+        <% imsigyosi = "" %>
+        <% if k.split("-")[1].split(')')[0].to_i - k.split("-")[0].split('(')[1].to_i == 2 %>
+        <% yoilgyosi4 << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 1] %>
+        <% yoilgyosi4 << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 2] %>
+        <% yoilgyosi4 << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 3] %>
+        <% else %>
+        <% yoilgyosi4 << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 1] %>
+        <% yoilgyosi4 << [imsiyoil.to_i,k.split("-")[1].split(')')[0].to_i - 2] %>
+        <% end %>
+    <% else %>
+        <% imsigyosi = k.split(')')[0].split('(')[1] %>
+        <% yoilgyosi4 << [imsiyoil.to_i,imsigyosi.to_i - 1] %>
+    <% end %>
+<% end %>
+<% yoilgyosi4 %>
+
+<% dannymatrix4 = [] %>
+<% dannymatrix4 = [[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0]]%>
+<% yoilgyosi4.each do |x| %>
+<!--x[0]는 요일 -->
+<!--x[1]는 교시 -->
+<% dannymatrix4[x[0]][x[1]] = 1 %>
+<% end %>
+<% dannymatrix4 %>
+
+<!--여기부터 대니 계산 함수 -->
+<% integratedanny = []%>
+<% integratedanny << dannymatrix %>
+<% integratedanny << dannymatrix2 %>
+<% integratedanny << dannymatrix3 %>
+<% integratedanny << dannymatrix4 %>
 <!-- 필요하면 dannymatrix 3, 4, 5 계속 던지면 아래 함수는 돌아감. integratedanny가 계산함수, sumdannymatrix가 통합함수 -->
 <br>
 <% n = 0 %>
@@ -166,18 +261,18 @@
 <% sumdannymatrix[i][j] = x[i][j] + sumdannymatrix[i][j] %>
 <% end %>
 <% end %>
-<% n = n + 1 %>
 <% end %>
 <br>
-<%= sumdannymatrix %>
-
+<% sumdannymatrix %>
+<% yoilgyosi = [] %>
 <!--sumdannymatrix 해석 함수 -->
 <br>
-<%= "#{n}명이 만날 수 있는 시간은?" %>
+<%= "모두가 만날 수 있는 시간은?" %>
 <br>
 <% for i in 0..4 do %>
 <% for j in 0..9 do %>
 <% if sumdannymatrix[i][j] == 0 %>
+<% yoilgyosi << [i,j] %>
 <% o = ""%>
    <% case %>
         <% when i == 0 %>
@@ -191,12 +286,45 @@
         <% when i == 4 %>
         <% o = "금" %>
     <% end %>
-    <%= "#{o}요일의 #{j + 1}교시"%>
+    <%= "#{o}요일의 #{j }교시"%>
     <br>
 <% end %>
 <% end %>
 <% end %>
 <p>에 가능합니다.</p>
 
+<table width="80%" align="center" >
+   <div id="head_nav">
+        <tr>
+            <th>Time</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+        </tr>
+    </div>  
+<br>
+<% n = "" %>
+<% n = yoilgyosi.count - 1 %>
+    <tr>
+         <% for j in (0..9)%>  <!-- j는 교시  k 는 요일 -->
+        <th><%="#{j}"%>교시</th>
+        <% for k in (0..4)%>
+            <td id=<%= "#{k}"+"#{j}"%>>
+                <% for i in (0..n)%>
+                <% m = "" %>
+                <% l = "" %>
+                <% m = yoilgyosi[i][0] %>
+                <% l = yoilgyosi[i][1] %>
+                <% if m == k && l == j%>
+                <%="모임가능"%>
+                <% end %>
+                <% end %>
+                </td>
+        <% end%>
+    </tr>
+     <% end%>
+</table>
 <%= link_to 'Edit', edit_sigandanny_path(@sigandanny) %> |
 <%= link_to 'Back', sigandannies_path %>

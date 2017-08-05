@@ -10,28 +10,30 @@
       </ul>
     </div>
   <% end %>
+  
   <div class="field">
-    <%= f.label :현재과목 %><br>
-    <%= f.text_field :gwamokid, :value => @currentgwamokid, :readonly => true %>
+    <%= f.label :강의명 %>:<%= f.text_field :gwamokid, :value => @currentgwamokid, :readonly => true %>
+  </div>
+  <div class="field fieldspace">
+    <%= f.label :작성자 %>:<%= f.text_field :username,:value => current_user.name, :readonly => true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :카테고리 %>
+    <%= f.select :category, [ '잡담','공유','질문' ], :prompt => '하나를 선택하세요' %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :제목 %><%= f.text_field :title %>
+  </div>
 
+  <div class="field">
+    <%= f.label :내용 %><br><%= f.text_area :body %>
   </div>
   <div class="field">
-    <%= f.label :작성자 %><br>
-    <%= f.text_field :username,:value => current_user.email, :readonly => true %>
+    <%= f.label :첨부파일 %><br><%= f.file_field :attachment %>
   </div>
-  <div class="field">
-    <%= f.label :제목 %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :내용 %><br>
-    <%= f.text_area :body %>
-  </div>
-  <div class="field">
-    <%= f.label :첨부파일 %><br>
-    <%= f.file_field :attachment %>
-  </div>
-  <div class="actions">
+  <div class="actions" id="postsubmit">
     <%= f.submit "작성하기",:currentgwamokid=> @currentgwamokid%>
     
   </div>

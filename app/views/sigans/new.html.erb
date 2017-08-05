@@ -1,5 +1,17 @@
-<h1>새 팀플 구하기</h1>
-<%= @currentgwamokid = @currentgwamokid %>
-<%= render 'form',:currentgwamokid=> @currentgwamokid  %>
+<div class="boundary5">
+    <p class="text1 post">게시글 쓰기</p>
 
-<%= link_to '돌아가기', sigans_path(:currentgwamokid=> @currentgwamokid) %>
+    <% @currentgwamokid = @currentgwamokid %>
+    <%= render 'form', :currentgwamokid=> @currentgwamokid %>
+    
+    <div id="postsubmit"><%= link_to '돌아가기', sigans_path(:currentgwamokid=> @currentgwamokid) %></div>
+</div>
+
+    
+    
+    
+
+
+
+
+

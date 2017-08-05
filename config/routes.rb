@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
  
   get 'crawlers/viewfile'
-  root 'posts#new'
+  root 'crawlers#search'
   
   get 'crawlers/searchtest'
   get 'crawlers/result'
@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get 'crawlers/searchtest2'
   get 'crawlers/intersection'
   post 'crawlers/create'
+  
   #resources :crawls do
     #collection { post :search, to: 'crawlers/searchtest2' }
   #end
@@ -43,4 +44,6 @@ Rails.application.routes.draw do
   match 'search' => 'crawlers#search', :as =>'search', :via =>:get
   match 'search_result' =>'crawlers#searchresult', :as => 'searchresult', :via => :post
   match 'search_result2' =>'crawlers#searchresult2', :as => 'searchresult2', :via => :post
+  
+  post 'users/createnickname'
 end

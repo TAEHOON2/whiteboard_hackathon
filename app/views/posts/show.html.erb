@@ -1,61 +1,67 @@
-<p id="notice"><%= notice %></p>
+<div class="ps-container">
 
-<p>
-  <strong>현재과목</strong>
-  <%= @post.gwamokid %>
-</p>
 
-<p>
-  <strong>작성자</strong>
-  <%= @post.username %>
-</p>
+<div class="post-show">
+  
+  <p class="text1"><%= @post.title %></p>
+    <div class="ps-info">
+      <div class="ps-username">
+        <p>작성자<span class="ps-break">|</span> <%= @post.username %></p>
+      </div>
+      <div class="ps-category">
+        <p class="ps-t">카테고리<span class="ps-break">|</span><%= @post.category %></p>
+      </div>
+    </div>
+  
+    <div class="ps-body">
+      <p class="text2">내용</p>
+      <p><%= @post.body %></p>
+    </div>
+    <div class="ps-attachment">
+      <p class="text2">첨부파일</p>
+      <div class="attachmentinfo"> 
+       <% if @post.attachment.url %>
+       <%= link_to '다운로드', @post.attachment.url %>
+       <% else %>
+      <span>첨부파일 없음</span>
+      <% end %>
+      </div>
+    </div>
 
-<p>
-  <strong>제목</strong>
-  <%= @post.title %>
-</p>
+    <div class="ps-btn">
+      <div id="wannawrite1"><%= link_to '수정하기', edit_post_path(@post, :currentgwamokid=> @post.gwamokid) %> </div>
+      <div id="wannawrite2">
+        <%= link_to '돌아가기', posts_path(:currentgwamokid=> @post.gwamokid) %>
+      </div>
+    </div>
+</div>
 
-<p>
-  <strong>내용</strong>
-  <%= @post.body %>
-</p>
+<div class="reply-show">
 
-<p>
-  <strong>첨부파일</strong>
-  <% if @post.attachment.url %>
-    <%= link_to '다운로드', @post.attachment.url %>
-  <% else %>
-    <span>첨부파일 없음</span>
-  <% end %>
-</p>
-
-<h6>댓글</h6>
-<% @post.replies.each do |reply| %>
-  <p>
-    <strong>작성자</strong>
-    <%= reply.reply_user %>
-  </p>
-  <p>
-    <strong>내용</strong>
-    <%= reply.body %>
-  </p>
-<% end %>
-
-<h6>댓글달기</h6>
-<%= form_for([@post, @post.replies.build]) do |f| %>
-  <p>
-    <%= f.label :작성자 %><br>
+    <p class="text1">댓글</p>
+    <% @post.replies.each do |reply| %>
+      <p class="text2 rpt">작성자<br>
+      <%= reply.reply_user %>
+      </p>
+      <p class="text2 rpt">내용<br>
+      <%= reply.body %>
+      </p>
+    <% end %>
+    
+    <p class="text2">댓글달기</p>
+    <%= form_for([@post, @post.replies.build]) do |f| %>
+    <p class="text2 rpt"><%= f.label :작성자 %><br>
     <%= f.text_field :reply_user %>
-  </p>
-  <p>
-    <%= f.label :내용 %><br>
+    </p>
+    <p class="text2 rpt"><%= f.label :내용 %><br>
     <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+    </p>
+    <p class="submit-btn">
+    <%= f.submit "작성하기" %>
+    </p>
+    <% end %>
 
-<% end %>
-<%= link_to '수정하기', edit_post_path(@post, :currentgwamokid=> @post.gwamokid) %> 
-<%= link_to '돌아가기', posts_path(:currentgwamokid=> @post.gwamokid) %>
+</div>
 
+
+</div>
