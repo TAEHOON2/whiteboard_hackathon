@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :edit, :update] # probably want to keep using this
-  after_action :set_nickname
-
+  # after_action :set_nickname
+  
   # GET /users
   # GET /users.json
   def index

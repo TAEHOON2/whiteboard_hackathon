@@ -38,12 +38,12 @@
 
 <div class="reply-show">
 
-    <p class="text1">댓글</p>
+    <p class="text1 rs ">댓글</p>
     <% @post.replies.each do |reply| %>
-      <p class="text2 rpt">작성자<br>
+      <p class="text2 rpt rs">작성자<br>
       <%= reply.reply_user %>
       </p>
-      <p class="text2 rpt">내용<br>
+      <p class="text2 rpt rs">내용<br>
       <%= reply.body %>
       </p>
     <% end %>

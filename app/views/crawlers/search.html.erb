@@ -79,15 +79,20 @@
   
   </div>
   </div>
-  <table class="siganpyosi >
+  
+  
+  <table class="siganpyo">
    <div id="head_nav">
+       <tr class="siganpyotitle">
+           <th colspan="6">나의 시간표</th>
+       </tr>
         <tr>
             <th>교시</th>
-            <th>월요일</th>
-            <th>화요일</th>
-            <th>수요일</th>
-            <th>목요일</th>
-            <th>금요일</th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
         </tr>
     </div>  
         
@@ -138,7 +143,7 @@
 <% n = yoilgyosi.count - 1 %>
     <tr>
          <% for j in (0..8)%>  <!-- j는 교시  k 는 요일 -->
-        <th><%="#{j+1}"%>교시</th>
+        <th><%="#{j+1}"%></th>
         <% for k in (0..4)%>
             <td id=<%= "#{k}"+"#{j}"%>>
                 <% for i in (0..n)%>
@@ -156,7 +161,11 @@
      <% end%>
 </table>
  
+ 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$("td:contains('수업있음')").addClass('greenBg');
+    $("td:contains('수업있음')").html("");.
+</script>
 </body>
-  
-
 </html>

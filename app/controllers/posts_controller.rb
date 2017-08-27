@@ -7,8 +7,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     @currentgwamokid = params[:currentgwamokid]
-    @classname= Usergwamok.where(gwamokid: @currentgwamokid)
-   
+  
   end
 
   # GET /posts/1

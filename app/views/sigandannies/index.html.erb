@@ -1,45 +1,53 @@
-<p id="notice"><%= notice %></p>
+<div class="sigan-box">
 
-<h1>Listing Sigandannies</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Userid1</th>
-      <th>Userid2</th>
-      <th>Userid3</th>
-      <th>Userid4</th>
-      <th>Userid5</th>
-      <th>Userid6</th>
-      <th>Userid7</th>
-      <th>Userid8</th>
-      <th>Userid9</th>
-      <th>Userid10</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <p class="text1">팀플하는 최적의 조건, 시간대니!</p>
+  
+  
+    <table class="sigantable">
+      <tr class="sigan-hidden">
+          <th>Userid1</th>
+          <th>Userid2</th>
+          <th>Userid3</th>
+          <th>Userid4</th>
+          <th>Userid5</th>
+          <th>Userid6</th>
+          <th>Userid7</th>
+          <th>Userid8</th>
+          <th>Userid9</th>
+          <th>Userid10</th>
+       </tr>
+     
+    
+      <tbody>
+        <% @sigandannies.each do |sigandanny| %>
+          <tr>
+            <td><%= sigandanny.userid1 %></td>
+            <td><%= sigandanny.userid2 %></td>
+            <td><%= sigandanny.userid3 %></td>
+            <td><%= sigandanny.userid4 %></td>
+            <td><%= sigandanny.userid5 %></td>
+            <td><%= sigandanny.userid6 %></td>
+            <td><%= sigandanny.userid7 %></td>
+            <td><%= sigandanny.userid8 %></td>
+            <td><%= sigandanny.userid9 %></td>
+            <td><%= sigandanny.userid10 %></td>
+          </tr>
+          
+          <tr>
+            <td colspan="4"><%= link_to '최적의 시간/장소는!', sigandanny %></td>
+            <td colspan="4"><%= link_to '정보 수정하기', edit_sigandanny_path(sigandanny) %></td>
+            <td colspan="2"><%= link_to '삭제', sigandanny, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  
+    <br>
 
-  <tbody>
-    <% @sigandannies.each do |sigandanny| %>
-      <tr>
-        <td><%= sigandanny.userid1 %></td>
-        <td><%= sigandanny.userid2 %></td>
-        <td><%= sigandanny.userid3 %></td>
-        <td><%= sigandanny.userid4 %></td>
-        <td><%= sigandanny.userid5 %></td>
-        <td><%= sigandanny.userid6 %></td>
-        <td><%= sigandanny.userid7 %></td>
-        <td><%= sigandanny.userid8 %></td>
-        <td><%= sigandanny.userid9 %></td>
-        <td><%= sigandanny.userid10 %></td>
-        <td><%= link_to 'Show', sigandanny %></td>
-        <td><%= link_to 'Edit', edit_sigandanny_path(sigandanny) %></td>
-        <td><%= link_to 'Destroy', sigandanny, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= link_to '누가 함께 하나요?', new_sigandanny_path %>
 
-<br>
 
-<%= link_to '여러분, 언제 시간대세요??', new_sigandanny_path %>
+
+
+</div>

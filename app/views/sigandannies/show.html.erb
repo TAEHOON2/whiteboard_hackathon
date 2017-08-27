@@ -17,7 +17,7 @@
 <% end %>
 <% c.reject(&:empty?) %>
 <% yoilgyosi = [] %>
-<br>
+
 <% c.each do|x| %>
 <% k = x %>
 <% next if x == ""%>
@@ -79,7 +79,7 @@
 <% end %>
 <% d.reject(&:empty?) %>
 <% yoilgyosi2 = [] %>
-<br>
+
 <% d.each do|x| %>
 <% k = x %>
 <% next if x == ""%>
@@ -139,7 +139,7 @@
 <% end %>
 <% e.reject(&:empty?) %>
 <% yoilgyosi3 = [] %>
-<br>
+
 <% e.each do|x| %>
 <% k = x %>
 <% next if x == ""%>
@@ -201,7 +201,7 @@
 <% end %>
 <% f.reject(&:empty?) %>
 <% yoilgyosi4 = [] %>
-<br>
+
 <% f.each do|x| %>
 <% k = x %>
 <% next if x == ""%>
@@ -252,7 +252,7 @@
 <% integratedanny << dannymatrix3 %>
 <% integratedanny << dannymatrix4 %>
 <!-- 필요하면 dannymatrix 3, 4, 5 계속 던지면 아래 함수는 돌아감. integratedanny가 계산함수, sumdannymatrix가 통합함수 -->
-<br>
+
 <% n = 0 %>
 <% sumdannymatrix = [[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0]] %>
 <% integratedanny.each do |x| %>
@@ -262,13 +262,13 @@
 <% end %>
 <% end %>
 <% end %>
-<br>
+
 <% sumdannymatrix %>
 <% yoilgyosi = [] %>
 <!--sumdannymatrix 해석 함수 -->
-<br>
-<%= "모두가 만날 수 있는 시간은?" %>
-<br>
+
+
+<p class="text1 sigantitle"><%= "모두가 만날 수 있는 시간은?" %></p>
 <% for i in 0..4 do %>
 <% for j in 0..9 do %>
 <% if sumdannymatrix[i][j] == 0 %>
@@ -286,22 +286,26 @@
         <% when i == 4 %>
         <% o = "금" %>
     <% end %>
-    <%= "#{o}요일의 #{j }교시"%>
-    <br>
+    <% "#{o}요일의 #{j }교시"%>
 <% end %>
 <% end %>
 <% end %>
-<p>에 가능합니다.</p>
 
-<table width="80%" align="center" >
+<div class="sigan-info">
+<div id="wannawrite3"><%= link_to '다른 팀원 넣어보기', edit_sigandanny_path(@sigandanny) %></div><span class="siganbr">|</span>
+<div id="wannawrite4"><%= link_to '오키!', sigandanny_url, method: :delete  %></div>
+
+</div>
+
+<table width="80%" align="center" class="sigantt" >
    <div id="head_nav">
         <tr>
-            <th>Time</th>
-            <th>Monday</th>
-            <th>Tuesday</th>
-            <th>Wednesday</th>
-            <th>Thursday</th>
-            <th>Friday</th>
+            <th>교시/요일</th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
         </tr>
     </div>  
 <br>
@@ -326,5 +330,3 @@
     </tr>
      <% end%>
 </table>
-<%= link_to 'Edit', edit_sigandanny_path(@sigandanny) %> |
-<%= link_to 'Back', sigandannies_path %>

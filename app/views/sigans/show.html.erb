@@ -1,61 +1,73 @@
-<p id="notice"><%= notice %></p>
+<div class="ps-container">
 
-<p>
-  <strong>현재과목</strong>
-  <%= @sigan.gwamokid %>
-</p>
 
-<p>
-  <strong>작성자</strong>
-  <%= @sigan.username %>
-</p>
+<div class="post-show">
+  
 
-<p>
-  <strong>제목</strong>
-  <%= @sigan.title %>
-</p>
+  <p class="text1"><%= @sigan.title %></p>
+    <div class="ps-info">
+      <div class="ps-username">
+        <p>작성자<span class="ps-break">|</span> <%= @sigan.username %></p>
+      </div>
+      <div class="ps-category">
+        <p class="ps-t">강의명<span class="ps-break">|</span><%= @sigan.gwamokid %></p>
+      </div>
+    </div>
+    
+ <div class="ps-body">
+      <p class="text2">내용</p>
+      <p><%= @sigan.body %></p>
+    </div>
+    <div class="ps-attachment">
+      <p class="text2">첨부파일</p>
+      <div class="attachmentinfo"> 
+       <% if @sigan.attachment.url %>
+       <%= link_to '다운로드', @sigan.attachment.url %>
+       <% else %>
+      <span>첨부파일 없음</span>
+      <% end %>
+      </div>
+    </div>
 
-<p>
-  <strong>내용</strong>
-  <%= @sigan.body %>
-</p>
+    <div class="ps-btn">
+      <div id="wannawrite1"><%= link_to '수정하기', edit_sigan_path(@sigan, :currentgwamokid=> @sigan.gwamokid) %> </div>
+      <div id="wannawrite2">
+        <%= link_to '돌아가기', sigans_path(:currentgwamokid=> @sigan.gwamokid) %>
+      </div>
+      <div id="wannawrite2">
+        <%= link_to '시간대니?', sigandannies_path %>
+      </div>
+    </div>
+</div>
 
-<p>
-  <strong>첨부파일</strong>
-  <% if @sigan.attachment.url %>
-    <%= link_to '다운로드', @sigan.attachment.url %>
-  <% else %>
-    <span>첨부파일 없음</span>
-  <% end %>
-</p>
 
-<h6>댓글</h6>
-<% @sigan.siplies.each do |siply| %>
-  <p>
-    <strong>작성자</strong>
-    <%= siply.reply_user %>
-  </p>
-  <p>
-    <strong>댓글</strong>
-    <%= siply.body %>
-  </p>
-<% end %>
 
-<h6>댓글달기</h6>
-<%= form_for([@sigan, @sigan.siplies.build]) do |f| %>
-  <p>
-    <%= f.label :작성자 %><br>
+<div class="reply-show">
+
+    <p class="text1">댓글</p>
+    <% @sigan.siplies.each do |siply| %>
+      <p class="text2 rpt rs">작성자<br>
+      <%= siply.reply_user %>
+      </p>
+      <p class="text2 rpt rs">내용<br>
+      <%= siply.body %>
+      </p>
+    <% end %>
+
+ <p class="text2">댓글달기</p>
+    <%= form_for([@sigan, @sigan.siplies.build]) do |f| %>
+    <p class="text2 rpt"><%= f.label :작성자 %><br>
     <%= f.text_field :reply_user %>
-  </p>
-  <p>
-    <%= f.label :내용 %><br>
+    </p>
+    <p class="text2 rpt"><%= f.label :내용 %><br>
     <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+    </p>
+    <p class="submit-btn">
+    <%= f.submit "작성하기" %>
+    </p>
+    <% end %>
 
-<%= link_to '수정하기', edit_sigan_path(@sigan, :currentgwamokid=> @sigan.gwamokid) %> 
-<%= link_to '돌아가기', sigans_path(:currentgwamokid=> @sigan.gwamokid) %>
-<%= link_to '시간대니?', sigandannies_path %>
+</div>
+
+
+</div>
